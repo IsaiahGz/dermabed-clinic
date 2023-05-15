@@ -1,3 +1,5 @@
-const Testimonials = require('./Testimonial');
+const Testimonial = require('./Testimonial');
+const Product = require('./Product');
+const User = require('./User');
 
-module.exports = { Thought };
+module.exports = { Testimonial, Product, User };

@@ -9,7 +9,7 @@ const productSchema = new Schema({
   },
   price: 
     {
-      type: Int,
+      type: Number,
       trim: true,
     },
   
