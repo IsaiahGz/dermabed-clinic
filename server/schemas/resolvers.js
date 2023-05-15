@@ -1,42 +1,33 @@
-const { Thought } = require('../models');
+const { Testimonial } = require('../models');
 
 const resolvers = {
   Query: {
-    thoughts: async () => {
-      return Thought.find().sort({ createdAt: -1 });
+    testimonials: async () => {
+      return Testimonial.find().sort({ createdAt: -1 });
     },
 
-    thought: async (parent, { thoughtId }) => {
-      return Thought.findOne({ _id: thoughtId });
+    testimonial: async (parent, { testimonialId }) => {
+      return Testimonial.findOne({ _id: testimonialId });
     },
   },
 
   Mutation: {
-    addThought: async (parent, { thoughtText, thoughtAuthor }) => {
-      return Thought.create({ thoughtText, thoughtAuthor });
+    addTestimonial: async (parent, { testimonialText, }) => {
+      return Testimonial.create({ testimonialText, });
     },
-    addComment: async (parent, { thoughtId, commentText }) => {
-      return Thought.findOneAndUpdate(
-        { _id: thoughtId },
-        {
-          $addToSet: { comments: { commentText } },
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
+  
+    removeTestimonial: async (parent, { testimonialId }) => {
+      return Testimonial.findOneAndDelete({ _id: testimonialId });
     },
-    removeThought: async (parent, { thoughtId }) => {
-      return Thought.findOneAndDelete({ _id: thoughtId });
-    },
-    removeComment: async (parent, { thoughtId, commentId }) => {
-      return Thought.findOneAndUpdate(
-        { _id: thoughtId },
-        { $pull: { comments: { _id: commentId } } },
+
+    updateTestimonial: async (parent, { id, }) => {
+     
+      return await Testimonial.findOneAndUpdate(
+        { _id: testimonialId }, 
         { new: true }
       );
-    },
+    }
+ 
   },
 };
 
