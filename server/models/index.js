@@ -1,3 +1,3 @@
-const Testimonials = require('./Testimonial');
+const Testimonial = require('./Testimonial');
 
-module.exports = { Thought };
+module.exports = { Testimonial };

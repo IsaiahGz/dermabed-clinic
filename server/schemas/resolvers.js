@@ -9,6 +9,10 @@ const resolvers = {
     testimonial: async (parent, { testimonialId }) => {
       return Testimonial.findOne({ _id: testimonialId });
     },
+    
+    product: async (parent, { productId }) => {
+      return Product.findOne({ _id: productId });
+    },
   },
 
   Mutation: {
@@ -21,9 +25,23 @@ const resolvers = {
     },
 
     updateTestimonial: async (parent, { id, }) => {
-     
       return await Testimonial.findOneAndUpdate(
-        { _id: testimonialId }, 
+        { _id: Testimonial }, 
+        { new: true }
+      );
+    },
+    
+    addProduct: async (parent, { product, }) => {
+      return Product.create({ product, });
+    },
+  
+    removeProduct: async (parent, { product }) => {
+      return Product.findOneAndDelete({ _id: productId });
+    },
+
+    updateProduct: async (parent, { Product, }) => {
+      return await Product.findOneAndUpdate(
+        { _id: productId }, 
         { new: true }
       );
     }
@@ -31,4 +49,9 @@ const resolvers = {
   },
 };
 
+
+
 module.exports = resolvers;
+
+
+
