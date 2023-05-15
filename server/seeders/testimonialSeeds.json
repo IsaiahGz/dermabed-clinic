@@ -1,6 +1,54 @@
 [
-	{
-		"testimonialText": "Everyone knows that debugging is twice as hard as writing a program in the first place. So if you're as clever as you can be when you write it, how will you ever debug it?",
-		"user": "Brian Kernighan"
-	}
+  {
+    "testimonialText": "I have been a client of Dr. Abed for over 10 years. He is a great dermatologist and his staff is very friendly. I highly recommend him, always leaves me satisfied and smiling.",
+    "user": "64628535680679f2b83711c9",
+    "isApproved": true
+  },
+  {
+    "testimonialText": "Dr. Abed's clinic was a life changer for me. I struggled with acne for years, and the treatments here have helped me so much. I am now much more confident in my skin.",
+    "user": "64628535680679f2b83711ca",
+    "isApproved": true
+  },
+  {
+    "testimonialText": "The skin care products recommended by Dr. Abed have made a significant difference in my skin health. I trust his judgement and appreciate his expertise.",
+    "user": "64628535680679f2b83711cb",
+    "isApproved": true
+  },
+  {
+    "testimonialText": "I had a botox treatment at Dr. Abed's clinic. The procedure was smooth, and the results were amazing. I look and feel younger!",
+    "user": "64628535680679f2b83711cc",
+    "isApproved": true
+  },
+  {
+    "testimonialText": "I visited Dr. Abed for skin cancer treatment. The attention, care and support I received from the team was excellent.",
+    "user": "64628535680679f2b83711cd",
+    "isApproved": true
+  },
+  {
+    "testimonialText": "Dr. Abed's clinic is top-notch. They use the latest technology for their treatments, and their staff is always kind and helpful.",
+    "user": "64628535680679f2b83711ce",
+    "isApproved": true
+  },
+  {
+    "testimonialText": "I'm extremely pleased with the laser hair removal treatments at Dr. Abed's clinic. The results have been fantastic and long-lasting.",
+    "user": "64628535680679f2b83711cf",
+    "isApproved": true
+  },
+  {
+    "testimonialText": "Dr. Abed's extensive knowledge and professional demeanor put me at ease. I know I'm in good hands when I visit his clinic.",
+    "user": "64628535680679f2b83711d0",
+    "isApproved": true
+  },
+  {
+    "testimonialText": "I was always hesitant to visit a dermatologist, but the friendly and welcoming environment at Dr. Abed's clinic made me feel comfortable. I'm glad I made the decision to come here.",
+    "user": "64628535680679f2b83711d1",
+    "isApproved": true
+  },
+  {
+    "testimonialText": "The personalized care and attention I receive at Dr. Abed's clinic is unmatched. I can't recommend them enough!",
+    "user": "6462857cf8ad5e22e4db9328",
+    "isApproved": true
+  }
 ]
+
+
