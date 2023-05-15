@@ -4,12 +4,11 @@ const typeDefs = gql`
 
 type User {
   _id: ID
-  name: String
   firstName: String
   lastName: String
+  fullName: String
   email:  String
   password:   String
-  fullName: String
   isAdmin: Boolean
 }
 
@@ -52,7 +51,7 @@ type User {
      }
      
      type Mutation {
-    addUser(userText: String!, userId: ID!): User
+    addUser(firstName: String!, lastName: String!, email: String!, password: String!): User
     removeUser(userId: ID!): User
     updateUser(userId: ID!): User
      }

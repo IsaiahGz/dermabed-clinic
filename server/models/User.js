@@ -27,13 +27,14 @@ const userSchema = new Schema({
   isAdmin: 
     {
       type: Boolean,
-      trim: true,
-    },
+      default: false,
+      allowNull: false,
+       },
   
 });
 
-userSchema.virtual('firstName, lastname').get(function () {
-  return this.user.length;
+userSchema.virtual('fullName').get(function () {
+  return `${this.firstName} ${this.lastName}`.trim();
 });
 
 // set up pre-save middleware to create password

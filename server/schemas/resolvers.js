@@ -1,13 +1,13 @@
-const { Testimonial } = require('../models');
+const { Testimonial, Product, User } = require('../models');
 
 const resolvers = {
   Query: {
     testimonials: async () => {
-      return Testimonial.find().sort({ createdAt: -1 });
+      return Testimonial.find().sort({ createdAt: -1 }).populate('user');
     },
 
     testimonial: async (parent, { testimonialId }) => {
-      return Testimonial.findOne({ _id: testimonialId });
+      return Testimonial.findOne({ _id: testimonialId }).populate('user');
     },
     
     product: async (parent, { productId }) => {
@@ -17,11 +17,15 @@ const resolvers = {
     user: async (parent, { userId }) => {
       return User.findOne({ _id: userId });
     },
+    
+    users: async () => {
+      return User.find();
+    },
   },
 
   Mutation: {
-    addTestimonial: async (parent, { testimonialText, }) => {
-      return Testimonial.create({ testimonialText, });
+    addTestimonial: async (parent, { testimonialText, userId, }) => {
+      return Testimonial.create({ testimonialText, user: userId, });
     },
   
     removeTestimonial: async (parent, { testimonialId }) => {
@@ -40,7 +44,7 @@ const resolvers = {
     },
   
     removeProduct: async (parent, { product }) => {
-      return Product.findOneAndDelete({ _id: productId });
+      return Product.findOneAndDelete({ _id: product });
     },
 
     updateProduct: async (parent, { Product, }) => {
@@ -49,12 +53,12 @@ const resolvers = {
         { new: true }
       );
     },
-    
-    addUser: async (parent, { user, }) => {
-      return User.create({ user, });
+   
+    addUser: async (parent, args) => {
+      return User.create({...args})
     },
   
-    removeUser: async (parent, { user }) => {
+    removeUser: async (parent, { userId }) => {
       return User.findOneAndDelete({ _id: userId });
     },
 
