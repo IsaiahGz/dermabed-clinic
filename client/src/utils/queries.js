@@ -1,28 +1,28 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_THOUGHTS = gql`
-  query getThoughts {
-    thoughts {
+export const QUERY_TESTIMONIALS = gql`
+  query GetTestimonials {
+    testimonials {
       _id
-      thoughtText
-      thoughtAuthor
+      testimonialText
+      user {
+        _id
+        fullName
+      }
+      isApproved
       createdAt
     }
   }
 `;
 
-export const QUERY_SINGLE_THOUGHT = gql`
-  query getSingleThought($thoughtId: ID!) {
-    thought(thoughtId: $thoughtId) {
+export const QUERY_PRODUCTS = gql`
+  query GetProducts {
+    products {
       _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-      comments {
-        _id
-        commentText
-        createdAt
-      }
+      name
+      price
+      description
+      inStock
     }
   }
 `;

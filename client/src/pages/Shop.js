@@ -1,27 +1,31 @@
 import React from 'react';
+import { useQuery } from '@apollo/client';
+import { QUERY_PRODUCTS } from '../utils/queries';
 
 const Shop = () => {
-  const items = [
-    {
-      id: 1,
-      name: 'Product 1',
-      price: '$99',
-      img: 'http://example.com/path/to/image1.jpg',
-    },
-    {
-      id: 2,
-      name: 'Product 2',
-      price: '$79',
-      img: 'http://example.com/path/to/image2.jpg',
-    },
-    {
-      id: 3,
-      name: 'Product 3',
-      price: '$59',
-      img: 'http://example.com/path/to/image3.jpg',
-    },
-    // add more items as needed
-  ];
+  // const items = [
+  //   {
+  //     id: 1,
+  //     name: 'Product 1',
+  //     price: '$99',
+  //     img: 'http://example.com/path/to/image1.jpg',
+  //   },
+  //   {
+  //     id: 2,
+  //     name: 'Product 2',
+  //     price: '$79',
+  //     img: 'http://example.com/path/to/image2.jpg',
+  //   },
+  //   {
+  //     id: 3,
+  //     name: 'Product 3',
+  //     price: '$59',
+  //     img: 'http://example.com/path/to/image3.jpg',
+  //   },
+  //   // add more items as needed
+  // ];
+  const { data } = useQuery(QUERY_PRODUCTS);
+  const items = data?.products || [];
 
   return (
     <div className='container mx-auto px-4'>
