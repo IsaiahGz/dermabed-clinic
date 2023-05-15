@@ -13,6 +13,10 @@ const resolvers = {
     product: async (parent, { productId }) => {
       return Product.findOne({ _id: productId });
     },
+    
+    user: async (parent, { userId }) => {
+      return User.findOne({ _id: userId });
+    },
   },
 
   Mutation: {
@@ -42,6 +46,21 @@ const resolvers = {
     updateProduct: async (parent, { Product, }) => {
       return await Product.findOneAndUpdate(
         { _id: productId }, 
+        { new: true }
+      );
+    },
+    
+    addUser: async (parent, { user, }) => {
+      return User.create({ user, });
+    },
+  
+    removeUser: async (parent, { user }) => {
+      return User.findOneAndDelete({ _id: userId });
+    },
+
+    updateUser: async (parent, { User, }) => {
+      return await User.findOneAndUpdate(
+        { _id: User }, 
         { new: true }
       );
     }

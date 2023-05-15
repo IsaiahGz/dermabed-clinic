@@ -5,6 +5,12 @@ const typeDefs = gql`
 type User {
   _id: ID
   name: String
+  firstName: String
+  lastName: String
+  email:  String
+  password:   String
+  fullName: String
+  isAdmin: Boolean
 }
 
   type Testimonial {
@@ -27,6 +33,11 @@ type User {
     products: [Product]!
     product(productId: ID!): Product
   }
+  
+  type Query {
+    users: [User]!
+    user(userId: ID!): User
+  }
 
   type Mutation {
     addTestimonial(testimonialText: String!, userId: ID!): Testimonial
@@ -38,6 +49,12 @@ type User {
     addProduct(productText: String!, productId: ID!): Product
     removeProduct(productId: ID!): Product
     updateProduct(productId: ID!): Product
+     }
+     
+     type Mutation {
+    addUser(userText: String!, userId: ID!): User
+    removeUser(userId: ID!): User
+    updateUser(userId: ID!): User
      }
 `;
 
