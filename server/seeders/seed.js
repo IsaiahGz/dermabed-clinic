@@ -1,12 +1,22 @@
 const db = require('../config/connection');
 const userSeeds = require('./userSeeds.json');
 const User = require('../models/User');
-// const testimonialSeeds = require('./testimonialSeeds.json');
+const Testimonial = require('../models/Testimonial');
+const testimonialSeeds = require('./testimonialSeeds.json');
 
 User.collection
   .insertMany(userSeeds)
   .then((data) => {
-    console.log(data.result.n + ' records inserted!');
+    process.exit(0);
+  })
+  .catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+
+Testimonial.collection
+  .insertMany(testimonialSeeds)
+  .then((data) => {
     process.exit(0);
   })
   .catch((err) => {

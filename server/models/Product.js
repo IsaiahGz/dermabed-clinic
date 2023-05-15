@@ -7,24 +7,26 @@ const productSchema = new Schema({
     unique: true,
     trim: true,
   },
-  price: 
-    {
-      type: Number,
-      trim: true,
-    },
-  
-  description: 
-    {
-      type: String,
-      trim: true,
-    },
-  
-  inStock: 
-    {
-      type: Boolean,
-      trim: true,
-    },
-  
+  price: {
+    type: Number,
+    trim: true,
+  },
+
+  description: {
+    type: String,
+    trim: true,
+  },
+
+  inStock: {
+    type: Boolean,
+    trim: true,
+  },
+
+  imageUrl: {
+    type: String,
+    trim: true,
+    required: true,
+  },
 });
 
 const Product = model('Product', productSchema);
