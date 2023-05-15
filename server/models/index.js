@@ -1,3 +1,3 @@
-const Thought = require('./Thought');
+const Testimonials = require('./Testimonial');
 
 module.exports = { Thought };
