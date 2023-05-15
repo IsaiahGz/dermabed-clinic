@@ -4,8 +4,8 @@ const typeDefs = gql`
   type Testimonial {
     _id: ID
     testimonialText: String
-    userId: String
-    createdAt: String
+    user: User
+    createdAt: Date
     
   }
 
@@ -15,7 +15,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addTestimonial(testimonialText: String!, userId: String!): Testimonial
+    addTestimonial(testimonialText: String!, userId: ID!): Testimonial
   
     removeTestimonial(testimonialId: ID!): Testimonial
     

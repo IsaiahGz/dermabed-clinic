@@ -2,16 +2,14 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
-  firstname: {
+  firstName: {
     type: String,
     required: true,
-    unique: true,
     trim: true,
   },
-  lastname: {
+  lastName: {
     type: String,
     required: true,
-    unique: true,
     trim: true,
   },
   email: {
@@ -32,6 +30,10 @@ const userSchema = new Schema({
       trim: true,
     },
   
+});
+
+userSchema.virtual('firstName, lastname').get(function () {
+  return this.user.length;
 });
 
 // set up pre-save middleware to create password

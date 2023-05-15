@@ -2,20 +2,31 @@ const { Schema, model } = require('mongoose');
 
 const cartSchema = new Schema({
 
-  userId: 
+ productCount: 
     {
-        type: Schema.Types.ObjectId,
-        ref: 'userId',
-    },
-  
-//make this a virtual with an array of prodId
-  productCount: 
-    {
-      type: Int,
+      type: Number,
       trim: true,
     },
+
+    user: 
+    {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+    },
+},
+    {
+      toJSON: {
+        virtuals: true,
+      },
+      id: false,
+    }
   
-});
+);
+
+
+cartSchema.virtual('cartCount').get(function () {
+  return this.cart.length;
+})
 
 const Cart = model('Cart', cartSchema);
 

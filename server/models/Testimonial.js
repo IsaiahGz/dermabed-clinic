@@ -9,14 +9,15 @@ const testimonialSchema = new Schema({
     maxlength: 280,
     trim: true,
   },
-  userId: 
+  user: 
     {
       type: Schema.Types.ObjectId,
-      ref: 'userId',
+      ref: 'user',
     },
   
   isApproved: {
     type: Boolean,
+    default: false,
     required: true,
   },
   createdAt: {
