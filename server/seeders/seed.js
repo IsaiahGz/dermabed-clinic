@@ -1,11 +1,15 @@
 const db = require('../config/connection');
-const { Testimonial } = require('../models');
-const testimonialSeeds = require('./testimonialSeeds.json');
+const userSeeds = require('./userSeeds.json');
+const User = require('../models/User');
+// const testimonialSeeds = require('./testimonialSeeds.json');
 
-db.once('open', async () => {
-  await Testimonial.deleteMany({});
-  await Testimonial.create(testimonialSeeds);
-
-  console.log('all done!');
-  process.exit(0);
-});
+User.collection
+  .insertMany(userSeeds)
+  .then((data) => {
+    console.log(data.result.n + ' records inserted!');
+    process.exit(0);
+  })
+  .catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });

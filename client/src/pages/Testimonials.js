@@ -1,6 +1,11 @@
 import React from 'react';
+import { QUERY_TESTIMONIALS } from '../utils/queries';
+import { useQuery } from '@apollo/client';
 
 const Testimonials = () => {
+  const { data } = useQuery(QUERY_TESTIMONIALS);
+  const testimonials = data?.testimonials || [];
+
   return (
     <div className='container mx-auto px-4'>
       <h1 className='text-4xl font-semibold mb-4'>Testimonials</h1>
