@@ -42,7 +42,7 @@ const Header = () => {
 	};
 
 	return (
-		<header className='w-full bg-slate-400 p-4'>
+		<header className='w-full bg-blueU p-4'>
 			<div className='inline-block'>
 				<Link className='text-2xl' to='/'>
 					<h1>Abeds Derm</h1>
