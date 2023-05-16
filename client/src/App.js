@@ -36,9 +36,9 @@ function App() {
 	return (
 		<ApolloProvider client={client}>
 			<Router>
-				<div>
+				<div className='relative min-h-screen'>
 					<Header />
-					<div>
+					<div className= "pb-28">
 						<Routes>
 							<Route path='/' element={<Home />} />
 							<Route path='/testimonials' element={<Testimonials />} />
