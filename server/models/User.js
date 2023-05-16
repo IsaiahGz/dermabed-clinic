@@ -21,16 +21,14 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true,
-    minlength: 5,
+    minlength: [5, 'Password must be 5 characters or longer!'],
   },
- 
-  isAdmin: 
-    {
-      type: Boolean,
-      default: false,
-      allowNull: false,
-       },
-  
+
+  isAdmin: {
+    type: Boolean,
+    default: false,
+    allowNull: false,
+  },
 });
 
 userSchema.virtual('fullName').get(function () {
