@@ -9,6 +9,7 @@ import About from './pages/About';
 import Acne from './pages/Acne';
 import Contact from './pages/Contact';
 import Shop from './pages/Shop';
+import LoginPage from './pages/LoginPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -45,6 +46,7 @@ function App() {
 							<Route path='/services' element={<Acne />} />
 							<Route path='/contact' element={<Contact />} />
 							<Route path='/shop' element={<Shop />} />
+							<Route path='/login' element={<LoginPage />} />
 							<Route path='/admin' element={<Admin />} />
 						</Routes>
 					</div>
