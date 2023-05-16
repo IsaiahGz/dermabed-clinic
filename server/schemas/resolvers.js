@@ -60,6 +60,11 @@ const resolvers = {
     },
 
     addUser: async (parent, args) => {
+      // Check if user already exists
+      const userAlreadyExists = await User.findOne({ email: args.email });
+      if (userAlreadyExists) {
+        throw new AuthenticationError('User with that email already exists');
+      }
       const user = await User.create({ ...args });
       const token = signToken(user);
       return { token, user };

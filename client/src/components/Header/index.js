@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import Auth from '../../utils/auth';
 
 const links = [
   {
@@ -66,24 +67,24 @@ const Header = () => {
   };
 
   return (
-    <header className='w-full bg-slate-400 p-4'>
+    <header className='w-full bg-slate-400 p-2'>
       <div className='inline-block'>
         <Link className='text-2xl' to='/'>
           <h1>Abeds Derm</h1>
         </Link>
       </div>
-      <nav className='hidden md:block float-right'>
+      <nav className='hidden lg:block float-right'>
         <ul className='flex flex-row'>
           {links.map((link) => {
             return (
-              <li className='mr-6' key={link.name}>
+              <li className='mr-4 p-1' key={link.name}>
                 <Link onClick={handleMobileNav} className='text-xl' to={link.path}>
                   {link.name}
                 </Link>
               </li>
             );
           })}
-          <li className='mr-6 relative'>
+          <li className='mr-4 p-1 relative'>
             <button className='text-xl' onClick={toggleServices}>
               Services
               <FontAwesomeIcon className='ml-2' icon={faCaretDown} />
@@ -107,19 +108,30 @@ const Header = () => {
               </div>
             )}
           </li>
-          <li className='mr-6'>
-            <Link className='text-xl bg-sky-200 hover:bg-sky-300 p-2 rounded' to='/login'>
-              Login
-            </Link>
-          </li>
+          {Auth.loggedIn() ? (
+            <li>
+              <button className='text-xl p-1 rounded bg-red-300 hover:bg-red-400' onClick={Auth.logout}>
+                {Auth.getProfile().data.firstName} Logout
+              </button>
+            </li>
+          ) : (
+            <li className='p-1'>
+              <Link className='text-xl bg-sky-200 hover:bg-sky-300 p-1 rounded' to='/login'>
+                Login
+              </Link>
+            </li>
+          )}
         </ul>
       </nav>
-      <div className='md:hidden float-right'>
+      <div className='lg:hidden float-right'>
         <button className='text-xl' onClick={handleMobileNav}>
           <FontAwesomeIcon icon={faBars} />
         </button>
       </div>
-      <nav id='mobileNavbar' className='bg-slate-300 md:hidden float-right fixed top-16 right-0 translate-x-80 transition w-48 h-screen'>
+      <nav
+        id='mobileNavbar'
+        className='bg-slate-300 lg:hidden float-right fixed top-12 right-0 translate-x-80 transition w-48 h-screen z-10'
+      >
         <ul className={isNavOpen ? 'block' : 'hidden'}>
           {links.map((link) => {
             return (
@@ -149,11 +161,19 @@ const Header = () => {
               </ul>
             )}
           </li>
-          <li className='p-3'>
-            <Link onClick={handleMobileNav} className='text-xl bg-sky-200 hover:bg-sky-300 p-2 rounded' to='/login'>
-              Login
-            </Link>
-          </li>
+          {Auth.loggedIn() ? (
+            <li className='p-3'>
+              <button className='text-xl p-1 rounded bg-red-300 hover:bg-red-400' onClick={Auth.logout}>
+                {Auth.getProfile().data.firstName} Logout
+              </button>
+            </li>
+          ) : (
+            <li className='p-3'>
+              <Link className='text-xl bg-sky-200 hover:bg-sky-300 p-1 rounded' to='/login'>
+                Login
+              </Link>
+            </li>
+          )}
         </ul>
       </nav>
     </header>
