@@ -26,7 +26,7 @@ const Testimonials = () => {
     <div className='container mx-auto px-4'>
       <h1 className='text-4xl font-semibold mb-4'>Testimonials</h1>
       {Auth.loggedIn() && (
-        <button onClick={handleAddTestimonial} className='add-testimonial-button'>
+        <button onClick={handleAddTestimonial} className='add-testimonial-button '>
           Add Testimonial
         </button>
       )}

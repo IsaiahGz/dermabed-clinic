@@ -26,3 +26,16 @@ export const QUERY_PRODUCTS = gql`
     }
   }
 `;
+
+export const QUERY_PRODUCT = gql`
+  query getProduct($id: ID!) {
+    product(id: $id) {
+      _id
+      name
+      description
+      price
+      inStock
+      imageUrl
+    }
+  }
+`;
