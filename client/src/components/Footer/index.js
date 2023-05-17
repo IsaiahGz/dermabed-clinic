@@ -29,8 +29,8 @@ const Footer = () => {
     <footer className='flex flex-col w-full absolute bottom-0 justify-center mb-10'>
       <div className='mx-auto w-fit'>
         <nav className='flex justify-center flex-wrap gap-6 text-gray-500 font-medium'>
-          {links.map((link) => (
-            <Link className='hover:text-gray-900' to={link.path}>
+          {links.map((link, idx) => (
+            <Link key={idx} className='hover:text-gray-900' to={link.path}>
               {link.name}
             </Link>
           ))}

@@ -56,7 +56,7 @@ function App() {
                 <Route path='/services/laser' element={<Laser />} />
                 <Route path='/contact' element={<Contact />} />
                 <Route path='/shop' element={<Shop />} />
-                <Route path='/shop/:itemId ' element={<ShopItem />} />
+                <Route path='/shop/:itemId' element={<ShopItem />} />
                 <Route path='/login' element={<LoginPage />} />
                 <Route path='/admin' element={<Admin />} />
               </Routes>

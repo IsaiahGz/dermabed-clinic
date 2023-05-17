@@ -17,6 +17,7 @@ const typeDefs = gql`
     testimonialText: String
     user: User
     createdAt: String
+    isApproved: Boolean
   }
 
   type Product {

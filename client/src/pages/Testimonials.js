@@ -33,9 +33,8 @@ const Testimonials = () => {
 
       {testimonials.map((testimonial, index) => (
         <div key={index} className='bg-white shadow rounded-lg p-6 mb-4'>
-          <h2 className='text-2xl font-semibold mb-2'>{testimonial.name}</h2>
-          <p className='text-lg mb-2'>"{testimonial.testimonial}"</p>
-          <p className='text-lg italic'>- {testimonial.service}</p>
+          <h2 className='text-2xl font-semibold mb-2'>{testimonial?.user?.fullName}</h2>
+          <p className='text-lg mb-2'>"{testimonial.testimonialText}"</p>
         </div>
       ))}
     </div>

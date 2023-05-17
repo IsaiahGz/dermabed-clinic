@@ -1,12 +1,14 @@
 import { useQuery } from '@apollo/client';
 import React, { useEffect, useState } from 'react';
-import { GET_PRODUCT } from '../utils/queries';
+import { QUERY_PRODUCT } from '../utils/queries';
+import { useParams } from 'react-router-dom';
 
 const ShopItem = ({ match }) => {
-  const { data } = useQuery(GET_PRODUCT, {
-    variables: { id: match.params.id },
+  const { itemId } = useParams();
+  const { data, loading } = useQuery(QUERY_PRODUCT, {
+    variables: { id: itemId },
   });
-
+  if (loading) return <div>Loading...</div>;
   const { name, price, description, imageUrl, inStock } = data.product;
 
   return (

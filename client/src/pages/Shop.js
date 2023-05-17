@@ -13,7 +13,7 @@ const Shop = () => {
 
       <div className='flex flex-wrap -mx-2'>
         {items.map((item) => (
-          <div key={item.id} className='w-full sm:w-1/2 lg:w-1/3 px-2 mb-4'>
+          <div key={item._id} className='w-full sm:w-1/2 lg:w-1/3 px-2 mb-4'>
             <div className='bg-white shadow rounded-lg overflow-hidden'>
               <Link to={`/shop/${item._id}`}>
                 <img className='w-full h-64 object-cover' src={item.img} alt={item.name} />
