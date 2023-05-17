@@ -10,7 +10,6 @@ const typeDefs = gql`
     fullName: String
     email: String
     isAdmin: Boolean
-    adminApproved: Boolean
   }
 
   type Testimonial {
@@ -38,6 +37,7 @@ const typeDefs = gql`
   type Query {
     testimonials: [Testimonial]!
     testimonial(testimonialId: ID!): Testimonial
+    adminTestimonials: [Testimonial]!
   }
 
   type Query {

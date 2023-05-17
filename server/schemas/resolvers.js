@@ -4,12 +4,16 @@ const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
   Query: {
+   
     testimonials: async () => {
-      return Testimonial.find().sort({ createdAt: -1 }).populate('user');
+      return Testimonial.find({ isApproved: true }).sort({ createdAt: -1 }).populate('user');
     },
     
-    testimonials: async () => {
-      return Testimonial.find().sort({ createdAt: -1 }).populate('user');
+    adminTestimonials: async (parent, { testimonialText, userId }, context) => {
+      if (context.user.isAdmin) {
+        return Testimonial.find({  }).sort({ createdAt: -1 }).populate('user');
+      }
+      throw new AuthenticationError('You need to be an admin!');
     },
 
     testimonial: async (parent, { testimonialId }) => {
@@ -47,12 +51,7 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     
-    addTestimonial: async (parent, { testimonialText, userId }, context) => {
-      if (context.user.isAdmin) {
-        return Testimonial.create({ testimonialText, user: context.user._id });
-      }
-      throw new AuthenticationError('You need to be an admin!');
-    },
+   
 
     removeTestimonial: async (parent, { testimonialId }) => {
       return Testimonial.findOneAndDelete({ _id: testimonialId });
