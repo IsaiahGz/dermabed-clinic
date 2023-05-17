@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_PRODUCTS } from '../utils/queries';
 import { Link } from 'react-router-dom';
+import { CartContext } from '../utils/cartProvider';
 
 const Shop = () => {
+  const { addOne } = useContext(CartContext);
   const { data } = useQuery(QUERY_PRODUCTS);
   const items = data?.products || [];
 
@@ -22,7 +24,9 @@ const Shop = () => {
                 </div>
               </Link>
               <p className='text-xl mb-2'>{item.price}</p>
-              <button className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700'>Add to Cart</button>
+              <button className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700' onClick={() => addOne(item._id)}>
+                Add to Cart
+              </button>
             </div>
           </div>
         ))}

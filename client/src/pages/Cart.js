@@ -6,7 +6,7 @@ import { CartContext } from '../utils/cartProvider';
 const Cart = () => {
   const { cartItems } = useContext(CartContext);
   const { loading, data } = useQuery(QUERY_PRODUCTS_LIST, {
-    variables: { productIds: cartItems.map((item) => item.id) },
+    variables: { productIds: cartItems.map((item) => item.productId) },
   });
   return (
     <div className='container mx-auto px-4'>

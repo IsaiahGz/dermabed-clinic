@@ -1,15 +1,23 @@
 import { useQuery } from '@apollo/client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { QUERY_PRODUCT } from '../utils/queries';
 import { useParams } from 'react-router-dom';
+import { CartContext } from '../utils/cartProvider';
 
 const ShopItem = ({ match }) => {
+  const { setItem } = useContext(CartContext);
   const { itemId } = useParams();
   const { data, loading } = useQuery(QUERY_PRODUCT, {
     variables: { id: itemId },
   });
+
+  const [quantity, setQuantity] = useState(1);
   if (loading) return <div>Loading...</div>;
   const { name, price, description, imageUrl, inStock } = data.product;
+
+  const handleAddToCart = () => {
+    setItem(itemId, quantity);
+  };
 
   return (
     <div className='container mx-auto px-4'>
@@ -19,7 +27,13 @@ const ShopItem = ({ match }) => {
         <p className='text-xl mb-6'>{price}</p>
         <p className='text-lg mb-6'>{description}</p>
         <p className='text-lg mb-6'>{inStock ? 'In Stock' : 'Out of Stock'}</p>
-        <button className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700' disabled={!inStock}>
+
+        <label htmlFor='quantity' className='mr-2'>
+          Quantity
+        </label>
+        <input id='quantity' type='number' min='1' value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value))} />
+
+        <button className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700' disabled={!inStock} onClick={handleAddToCart}>
           Add to Cart
         </button>
       </div>

@@ -39,7 +39,7 @@ const serviceLinks = [
   },
   {
     name: 'Laser Hair Removal',
-    path: '/services/laserhairremoval',
+    path: '/services/laser',
   },
 ];
 
