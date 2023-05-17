@@ -23,7 +23,13 @@ const Contact = () => {
         <div>
           <h2 className='text-2xl font-semibold mb-2'>Location</h2>
           {/* Here you might want to embed a map showing the location of your office. */}
-          <div className='h-64 bg-gray-200'>Map goes here</div>
+          <div className='h-64 bg-gray-200'>
+          <iframe
+              title='Map'
+              className='w-full h-full'
+              src='https://maps.google.com/maps?q=800+S+Mint+St%2C+Charlotte%2C+NC+28202&z=15&output=embed'
+            ></iframe>
+          </div>
         </div>
       </div>
     </div>

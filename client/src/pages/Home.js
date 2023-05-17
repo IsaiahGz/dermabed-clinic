@@ -1,4 +1,5 @@
 import React from 'react';
+import charlotte from '../assets/images/charlotte.jpg';
 // import { useQuery } from '@apollo/client';
 
 // import { QUERY } from '../utils/queries';
@@ -6,7 +7,9 @@ import React from 'react';
 const Home = () => {
 	// const { loading, data } = useQuery(QUERY);
 
-	return <div>Homepage!</div>;
+	return <div>
+		<div  className= "flex h-screen w-screen"> <img className="object-cover w-full h-full" src={charlotte} alt="charlotte"></img> </div>
+	</div>;
 };
 
 export default Home;

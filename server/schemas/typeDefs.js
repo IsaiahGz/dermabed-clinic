@@ -37,6 +37,7 @@ const typeDefs = gql`
   type Query {
     testimonials: [Testimonial]!
     testimonial(testimonialId: ID!): Testimonial
+    adminTestimonials: [Testimonial]!
   }
 
   type Query {
