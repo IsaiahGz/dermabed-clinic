@@ -24,6 +24,13 @@ const resolvers = {
       return Product.findOne({ _id: productId });
     },
 
+    productsList: async (parent, { productIds }) => {
+      const products = await Product.find({
+        _id: { $in: productIds },
+      });
+      return products;
+    },
+
     products: async () => {
       return Product.find();
     },
