@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import Auth from '../../utils/auth';
+import ShoppingBag from '../ShoppingBag';
 
 const links = [
   {
@@ -108,14 +109,15 @@ const Header = () => {
               </div>
             )}
           </li>
+          <ShoppingBag />
           {Auth.loggedIn() ? (
-            <li>
+            <li className='ml-3'>
               <button className='text-xl p-1 rounded bg-red-300 hover:bg-red-400' onClick={Auth.logout}>
                 {Auth.getProfile().data.firstName} Logout
               </button>
             </li>
           ) : (
-            <li className='p-1'>
+            <li className='ml-3 p-1'>
               <Link className='text-xl bg-sky-200 hover:bg-sky-300 p-1 rounded' to='/login'>
                 Login
               </Link>
@@ -124,7 +126,8 @@ const Header = () => {
         </ul>
       </nav>
       <div className='lg:hidden float-right'>
-        <button className='text-xl' onClick={handleMobileNav}>
+        <ShoppingBag />
+        <button className='ml-3 text-xl' onClick={handleMobileNav}>
           <FontAwesomeIcon icon={faBars} />
         </button>
       </div>
