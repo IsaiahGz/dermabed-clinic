@@ -17,6 +17,8 @@ import Cancer from './pages/Cancer';
 import Laser from './pages/Laser';
 import ShopItem from './pages/ShopItem';
 
+import CartProvider from './utils/cartProvider';
+
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
@@ -40,26 +42,28 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className='relative min-h-screen'>
-          <Header />
-          <div className='pb-36'>
-            <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/testimonials' element={<Testimonials />} />
-              <Route path='/about' element={<About />} />
-              <Route path='/services/acne' element={<Acne />} />
-              <Route path='/services/botox' element={<Botox />} />
-              <Route path='/services/cancer' element={<Cancer />} />
-              <Route path='/services/laser' element={<Laser />} />
-              <Route path='/contact' element={<Contact />} />
-              <Route path='/shop' element={<Shop />} />
-              <Route path='/shop/:itemId ' element={<ShopItem />} />
-              <Route path='/login' element={<LoginPage />} />
-              <Route path='/admin' element={<Admin />} />
-            </Routes>
+        <CartProvider>
+          <div className='relative min-h-screen'>
+            <Header />
+            <div className='pb-36'>
+              <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/testimonials' element={<Testimonials />} />
+                <Route path='/about' element={<About />} />
+                <Route path='/services/acne' element={<Acne />} />
+                <Route path='/services/botox' element={<Botox />} />
+                <Route path='/services/cancer' element={<Cancer />} />
+                <Route path='/services/laser' element={<Laser />} />
+                <Route path='/contact' element={<Contact />} />
+                <Route path='/shop' element={<Shop />} />
+                <Route path='/shop/:itemId ' element={<ShopItem />} />
+                <Route path='/login' element={<LoginPage />} />
+                <Route path='/admin' element={<Admin />} />
+              </Routes>
+            </div>
+            <Footer />
           </div>
-          <Footer />
-        </div>
+        </CartProvider>
       </Router>
     </ApolloProvider>
   );
