@@ -1,5 +1,7 @@
 const { gql } = require('apollo-server-express');
 
+// Edit the product typedef
+
 const typeDefs = gql`
   type User {
     _id: ID
@@ -19,6 +21,11 @@ const typeDefs = gql`
 
   type Product {
     _id: ID
+    name: String
+    price: Float
+    description: String
+    inStock: Boolean
+    imageUrl: String
   }
 
   type Auth {

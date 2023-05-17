@@ -12,6 +12,10 @@ import Shop from './pages/Shop';
 import LoginPage from './pages/LoginPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Botox from './pages/Botox';
+import Cancer from './pages/Cancer';
+import Laser from './pages/Laser';
+import ShopItem from './pages/ShopItem';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -43,9 +47,13 @@ function App() {
               <Route path='/' element={<Home />} />
               <Route path='/testimonials' element={<Testimonials />} />
               <Route path='/about' element={<About />} />
-              <Route path='/services' element={<Acne />} />
+              <Route path='/services/acne' element={<Acne />} />
+              <Route path='/services/botox' element={<Botox />} />
+              <Route path='/services/cancer' element={<Cancer />} />
+              <Route path='/services/laser' element={<Laser />} />
               <Route path='/contact' element={<Contact />} />
               <Route path='/shop' element={<Shop />} />
+              <Route path='/shop/:itemId ' element={<ShopItem />} />
               <Route path='/login' element={<LoginPage />} />
               <Route path='/admin' element={<Admin />} />
             </Routes>
