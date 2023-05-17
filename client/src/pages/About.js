@@ -14,8 +14,8 @@ const About = () => {
         and comfortable environment.
       </p>
       <p className='text-lg mb-4'>
-        Our primary dermatologist, Dr. Doe, is a board-certified dermatologist with over 15 years of experience in medical and cosmetic
-        dermatology. Dr. Doe is committed to helping patients achieve healthy, beautiful skin and uses the latest technologies and
+        Our primary dermatologist, Dr. Rich, is a board-certified dermatologist with over 15 years of experience in medical and cosmetic
+        dermatology. Dr. Rich is committed to helping patients achieve healthy, beautiful skin and uses the latest technologies and
         treatments in the field.
       </p>
       <p className='text-lg mb-4'>

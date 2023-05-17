@@ -10,6 +10,7 @@ const typeDefs = gql`
     fullName: String
     email: String
     isAdmin: Boolean
+    adminApproved: Boolean
   }
 
   type Testimonial {

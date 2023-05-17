@@ -7,6 +7,10 @@ const resolvers = {
     testimonials: async () => {
       return Testimonial.find().sort({ createdAt: -1 }).populate('user');
     },
+    
+    testimonials: async () => {
+      return Testimonial.find().sort({ createdAt: -1 }).populate('user');
+    },
 
     testimonial: async (parent, { testimonialId }) => {
       return Testimonial.findOne({ _id: testimonialId }).populate('user');
@@ -41,6 +45,13 @@ const resolvers = {
         return Testimonial.create({ testimonialText, user: context.user._id });
       }
       throw new AuthenticationError('You need to be logged in!');
+    },
+    
+    addTestimonial: async (parent, { testimonialText, userId }, context) => {
+      if (context.user.isAdmin) {
+        return Testimonial.create({ testimonialText, user: context.user._id });
+      }
+      throw new AuthenticationError('You need to be an admin!');
     },
 
     removeTestimonial: async (parent, { testimonialId }) => {
