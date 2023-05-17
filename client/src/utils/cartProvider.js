@@ -93,6 +93,8 @@ export default function CartProvider({ children }) {
   const providerValue = {
     // The current cart state
     cartItems: state.cartItems,
+    // The total number of items in the cart
+    itemCount: state.cartItems.reduce((total, item) => total + item.quantity, 0),
     // Dispatch function to add/update an item in the cart given a productId and quantity. By default, quantity is 1.
     setItem: (productId, quantity = 1) => dispatch({ type: actions.SET_ITEM, productId, quantity }),
     // Dispatch function to remove an item from the cart given a productId

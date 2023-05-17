@@ -42,6 +42,7 @@ const typeDefs = gql`
 
   type Query {
     products: [Product]!
+    productsList(productIds: [ID]!): [Product]!
     product(productId: ID!): Product
   }
 

@@ -16,6 +16,7 @@ import Botox from './pages/Botox';
 import Cancer from './pages/Cancer';
 import Laser from './pages/Laser';
 import ShopItem from './pages/ShopItem';
+import Cart from './pages/Cart';
 
 import CartProvider from './utils/cartProvider';
 
@@ -57,6 +58,7 @@ function App() {
                 <Route path='/contact' element={<Contact />} />
                 <Route path='/shop' element={<Shop />} />
                 <Route path='/shop/:itemId' element={<ShopItem />} />
+                <Route path='/cart' element={<Cart />} />
                 <Route path='/login' element={<LoginPage />} />
                 <Route path='/admin' element={<Admin />} />
               </Routes>
