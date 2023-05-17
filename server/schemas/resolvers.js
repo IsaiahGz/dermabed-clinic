@@ -16,20 +16,24 @@ const resolvers = {
       return Product.findOne({ _id: productId });
     },
 
+    products: async () => {
+      return Product.find();
+    },
+
     user: async (parent, { userId }) => {
       return User.findOne({ _id: userId });
     },
 
-		users: async () => {
-			return User.find();
-		},
+    users: async () => {
+      return User.find();
+    },
     me: async (parent, args, context) => {
       if (context.user) {
         return Profile.findOne({ _id: context.user._id });
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-	},
+  },
 
   Mutation: {
     addTestimonial: async (parent, { testimonialText, userId }, context) => {
