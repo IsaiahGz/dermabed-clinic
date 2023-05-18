@@ -29,6 +29,15 @@ const typeDefs = gql`
     imageUrl: String
   }
 
+  input CartItems {
+    productId: ID
+    quantity: Int
+  }
+
+  type Stripe {
+    redirectUrl: String
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -65,6 +74,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
+    checkout(cartItems: [CartItems]!): Stripe
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     removeUser(userId: ID!): User
