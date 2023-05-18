@@ -55,7 +55,7 @@ const typeDefs = gql`
   type Mutation {
     addTestimonial(testimonialText: String!): Testimonial
     removeTestimonial(testimonialId: ID!): Testimonial
-    updateTestimonial(testimonialId: ID!): Testimonial
+    updateTestimonial(testimonialId: ID!, isApproved: Boolean!): Testimonial!
   }
 
   type Mutation {

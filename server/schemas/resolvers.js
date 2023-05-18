@@ -64,9 +64,26 @@ const resolvers = {
       return Testimonial.findOneAndDelete({ _id: testimonialId });
     },
 
-    updateTestimonial: async (parent, { id }) => {
-      return await Testimonial.findOneAndUpdate({ _id: Testimonial }, { new: true });
+    updateTestimonial: async (parent, { testimonialId, isApproved }, context) => {
+      if (context.user.isAdmin) {
+        const updatedTestimonial = await Testimonial.findOneAndUpdate(
+          { _id: testimonialId },
+          { isApproved },
+          { new: true }
+        ).populate('user');
+  
+        return updatedTestimonial;
+      }
+      
+      throw new AuthenticationError('You need to be an admin!');
     },
+    
+    
+    
+    
+    // updateTestimonial: async (parent, { id }) => {
+    //   return await Testimonial.findOneAndUpdate({ _id: Testimonial }, { new: true });
+    // },
 
     addProduct: async (parent, { product }) => {
       return Product.create({ product });
