@@ -48,6 +48,12 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    myTestimonials: async (parent, args, context) => {
+      if (!context.user) {
+        throw new AuthenticationError('You need to be logged in!');
+      }
+      return Testimonial.find({ user: context.user._id }).sort({ createdAt: -1 });
+    },
   },
 
   Mutation: {

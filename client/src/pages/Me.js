@@ -1,12 +1,19 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_MY_TESTIMONIALS } from '../utils/queries';
-import Auth from '../utils/auth';
 
 const Me = () => {
-  const { data } = useQuery(QUERY_MY_TESTIMONIALS, {
-    variables: { userId: Auth.getProfile().data._id },
+  const { loading, data, error } = useQuery(QUERY_MY_TESTIMONIALS, {
+    fetchPolicy: 'network-only',
   });
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error! {error.message}</p>;
+  }
 
   return (
     <div className='container mx-auto px-4'>
@@ -22,5 +29,3 @@ const Me = () => {
 };
 
 export default Me;
-
-
