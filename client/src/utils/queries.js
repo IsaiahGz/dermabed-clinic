@@ -52,3 +52,18 @@ export const QUERY_PRODUCT = gql`
     }
   }
 `;
+
+export const QUERY_ADMIN_TESTIMONIALS = gql`
+  query GetAdminTestimonials {
+    adminTestimonials {
+      _id
+      testimonialText
+      user {
+        _id
+        fullName
+      }
+      isApproved
+      createdAt
+    }
+  }
+`;

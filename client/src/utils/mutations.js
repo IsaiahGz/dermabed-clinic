@@ -23,32 +23,39 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_TESTIMONIAL = gql`
-  mutation addTestimonial($testimonialText: String!, $testimonialAuthor: String!) {
-    addTestimonial(testimonialText: $testimonialText, testimonialAuthor: $testimonialAuthor) {
+  mutation addTestimonial($testimonialText: String!) {
+    addTestimonial(testimonialText: $testimonialText) {
       _id
       testimonialText
-      testimonialAuthor
       createdAt
-      comments {
-        _id
-        commentText
-      }
     }
   }
 `;
 
-export const ADD_COMMENT = gql`
-  mutation addComment($thoughtId: ID!, $commentText: String!) {
-    addComment(thoughtId: $thoughtId, commentText: $commentText) {
+export const UPDATE_TESTIMONIAL = gql`
+  mutation updateTestimonial($testimonialId: ID!, $testimonialText: String!) {
+    updateTestimonial(testimonialId: $testimonialId, testimonialText: $testimonialText) {
       _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-      comments {
-        _id
-        commentText
-        createdAt
-      }
+      testimonialText
+      isApproved
+    }
+  }
+`;
+
+export const ADMIN_UPDATE_TESTIMONIAL = gql`
+  mutation adminUpdateTestimonial($testimonialId: ID!, $isApproved: Boolean!) {
+    adminUpdateTestimonial(testimonialId: $testimonialId, isApproved: $isApproved) {
+      _id
+      isApproved
+    }
+  }
+`;
+
+export const ADMIN_UPDATE_USER = gql`
+  mutation adminUpdateUser($userId: ID!, $isAdmin: Boolean!) {
+    adminUpdateUser(userId: $userId, isAdmin: $isAdmin) {
+      _id
+      isAdmin
     }
   }
 `;
