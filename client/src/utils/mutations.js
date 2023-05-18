@@ -43,8 +43,8 @@ export const UPDATE_TESTIMONIAL = gql`
 `;
 
 export const ADMIN_UPDATE_TESTIMONIAL = gql`
-  mutation adminUpdateTestimonial($testimonialId: ID!, $isApproved: Boolean!) {
-    adminUpdateTestimonial(testimonialId: $testimonialId, isApproved: $isApproved) {
+  mutation approveTestimonial($testimonialId: ID!, $isApproved: Boolean!) {
+    approveTestimonial(testimonialId: $testimonialId, isApproved: $isApproved) {
       _id
       isApproved
     }
@@ -64,6 +64,14 @@ export const MUTATE_CHECKOUT = gql`
   mutation checkout($cartItems: [CartItemsInput]!) {
     checkout(cartItems: $cartItems) {
       redirectUrl
+    }
+  }
+`;
+
+export const REMOVE_TESTIMONIAL = gql`
+  mutation removeTestimonial($testimonialId: ID!) {
+    removeTestimonial(testimonialId: $testimonialId) {
+      _id
     }
   }
 `;
