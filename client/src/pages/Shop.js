@@ -24,8 +24,12 @@ const Shop = () => {
                 </div>
               </Link>
               <p className='text-xl mb-2'>{item.price}</p>
-              <button className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700' onClick={() => addOne(item._id)}>
-                Add to Cart
+              <button
+                className={`px-4 py-2 rounded text-white ${item.inStock ? 'bg-blue-500 hover:bg-blue-700' : 'bg-gray-500'}`}
+                onClick={() => addOne(item._id)}
+                disabled={!item.inStock}
+              >
+                {item.inStock ? 'Add to Cart' : 'Out of Stock'}
               </button>
             </div>
           </div>

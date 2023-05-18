@@ -99,6 +99,10 @@ const typeDefs = gql`
     removeUser(userId: ID!): User
     updateUser(userId: ID!): User
   }
+
+  type Query {
+    myTestimonials: [Testimonial]
+  }
 `;
 
 module.exports = typeDefs;

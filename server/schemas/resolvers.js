@@ -59,6 +59,12 @@ const resolvers = {
       const userEmail = context.user.email;
       return PurchaseHistory.find({ email: userEmail }).populate('productsQuantity.product');
     },
+    myTestimonials: async (parent, args, context) => {
+      if (!context.user) {
+        throw new AuthenticationError('You need to be logged in!');
+      }
+      return Testimonial.find({ user: context.user._id }).sort({ createdAt: -1 });
+    },
   },
 
   Mutation: {
