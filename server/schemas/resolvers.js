@@ -62,9 +62,43 @@ const resolvers = {
       return Testimonial.findOneAndDelete({ _id: testimonialId });
     },
 
-    updateTestimonial: async (parent, { id }) => {
-      return await Testimonial.findOneAndUpdate({ _id: Testimonial }, { new: true });
-    },
+    // updateTestimonial: async (parent, { id, testimonialText }, context) => {
+    //   if (context.user) {
+    //     const testimonial = await Testimonial.findById(id);
+
+    //     if (!testimonial || testimonial.userId.toString() !== context.user._id.toString()) {
+    //       throw new Error('You do not have permission to update this testimonial');
+    //     }
+
+    //     // Update and save the testimonial
+    //     testimonial.testimonialText = testimonialText;
+    //     await testimonial.save();
+
+    //     return testimonial;
+    //   } else {
+    //     throw new AuthenticationError('You must be logged in to update a testimonial');
+    //   }
+    // },
+
+    // approveTestimonial: async (parent, { testimonialId, isApproved }, context) => {
+    //   if (context.user.isAdmin) {
+    //     try {
+    //       const testimonial = await Testimonial.findById(testimonialId);
+
+    //       if (!testimonial) {
+    //         throw new Error('No testimonial found with this id');
+    //       }
+
+    //       testimonial.isApproved = isApproved;
+    //       await testimonial.save();
+
+    //       return testimonial;
+    //     } catch (err) {
+    //       console.error(err);
+    //     }
+    //   }
+    //   throw new AuthenticationError('You need to be an admin!');
+    // },
 
     addProduct: async (parent, { product }) => {
       return Product.create({ product });

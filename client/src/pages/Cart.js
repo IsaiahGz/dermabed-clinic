@@ -5,15 +5,23 @@ import { MUTATE_CHECKOUT } from '../utils/mutations';
 import { CartContext } from '../utils/cartProvider';
 
 const Cart = () => {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, removeItemFromCart } = useContext(CartContext);
   const { loading, data } = useQuery(QUERY_PRODUCTS_LIST, {
     variables: { productIds: cartItems.map((item) => item.productId) },
   });
   const [checkout, checkoutStatus] = useMutation(MUTATE_CHECKOUT);
+
+  const handleRemoveItem = (itemId) => {
+    removeItemFromCart(itemId); 
+  };
+  
   return (
     <div className='container mx-auto px-4'>
       <h1 className='text-4xl font-semibold mb-4'>Cart</h1>
-
+      {cartItems.length === 0 ? (
+        <div>Your cart is empty.</div>
+      ) : (
+        <>
       {loading ? (
         <div>Loading...</div>
       ) : (
@@ -27,7 +35,9 @@ const Cart = () => {
               </div>
               <div className='flex-shrink-0'>
                 <p className='text-lg mb-2'>Quantity: {cartItems.filter((cartItem) => cartItem.productId === item._id)[0].quantity}</p>
-                <button className='px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700'>Remove</button>
+                <button className='px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700'
+                 onClick={() => handleRemoveItem(item._id)}
+                 >Remove</button>
               </div>
             </div>
           ))}
@@ -52,6 +62,8 @@ const Cart = () => {
       >
         Proceed to Checkout
       </button>
+      </>
+      )}
     </div>
   );
 };

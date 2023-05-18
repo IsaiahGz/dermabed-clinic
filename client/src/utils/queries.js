@@ -67,3 +67,25 @@ export const QUERY_ADMIN_TESTIMONIALS = gql`
     }
   }
 `;
+
+export const QUERY_ALL_USERS = gql`
+  query GetAllUsers {
+    allUsers {
+      _id
+      firstName
+      lastName
+      email
+      isAdmin
+    }
+  }
+`;
+
+export const QUERY_MY_TESTIMONIALS = gql`
+  query GetMyTestimonials($userId: ID!) {
+    myTestimonials(userId: $userId) {
+      _id
+      testimonialText
+      createdAt
+    }
+  }
+`;
