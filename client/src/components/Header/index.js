@@ -111,11 +111,18 @@ const Header = () => {
           </li>
           <ShoppingBag />
           {Auth.loggedIn() ? (
-            <li className='ml-3'>
-              <button className='text-xl p-1 rounded bg-red-300 hover:bg-red-400' onClick={Auth.logout}>
-                {Auth.getProfile().data.firstName} Logout
-              </button>
-            </li>
+            <>
+              <li className='ml-3'>
+                <Link className='text-xl p-1 rounded bg-blue-300 hover:bg-blue-400' to='/me'>
+                  {Auth.getProfile().data.firstName}
+                </Link>
+              </li>
+              <li className='ml-3'>
+                <button className='text-xl p-1 rounded bg-red-300 hover:bg-red-400' onClick={Auth.logout}>
+                  Logout
+                </button>
+              </li>
+            </>
           ) : (
             <li className='ml-3 p-1'>
               <Link className='text-xl bg-sky-200 hover:bg-sky-300 p-1 rounded' to='/login'>
@@ -165,11 +172,18 @@ const Header = () => {
             )}
           </li>
           {Auth.loggedIn() ? (
-            <li className='p-3'>
-              <button className='text-xl p-1 rounded bg-red-300 hover:bg-red-400' onClick={Auth.logout}>
-                {Auth.getProfile().data.firstName} Logout
-              </button>
-            </li>
+            <>
+              <li className='p-3'>
+                <Link className='text-xl p-1 rounded bg-blue-300 hover:bg-blue-400' to='/me'>
+                  {Auth.getProfile().data.firstName}
+                </Link>
+              </li>
+              <li className='p-3'>
+                <button className='text-xl p-1 rounded bg-red-300 hover:bg-red-400' onClick={Auth.logout}>
+                  Logout
+                </button>
+              </li>
+            </>
           ) : (
             <li className='p-3'>
               <Link className='text-xl bg-sky-200 hover:bg-sky-300 p-1 rounded' to='/login'>
