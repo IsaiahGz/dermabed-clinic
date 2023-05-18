@@ -9,7 +9,7 @@ const Cart = () => {
   const { loading, data } = useQuery(QUERY_PRODUCTS_LIST, {
     variables: { productIds: cartItems.map((item) => item.productId) },
   });
-  const [checkout] = useMutation(MUTATE_CHECKOUT);
+  const [checkout, checkoutStatus] = useMutation(MUTATE_CHECKOUT);
   return (
     <div className='container mx-auto px-4'>
       <h1 className='text-4xl font-semibold mb-4'>Cart</h1>
@@ -35,14 +35,19 @@ const Cart = () => {
       )}
 
       <button
-        className='px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700'
+        className={
+          checkoutStatus.loading
+            ? 'px-4 py-2 bg-green-400 text-white rounded cursor-not-allowed'
+            : 'px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600'
+        }
+        disabled={checkoutStatus.loading}
         onClick={async () => {
           const stripeCheckout = await checkout({
             variables: {
               cartItems: cartItems.map((item) => ({ productId: item.productId, quantity: item.quantity })),
             },
           });
-          console.log(stripeCheckout);
+          if (stripeCheckout.data?.checkout?.redirectUrl) window.location = stripeCheckout.data.checkout.redirectUrl;
         }}
       >
         Proceed to Checkout
