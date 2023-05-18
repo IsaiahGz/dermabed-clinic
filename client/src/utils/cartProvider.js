@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useContext } from 'react';
 import { useImmerReducer } from 'use-immer';
 
 // A list of actions that can be dispatched to the cart reducer
@@ -76,6 +76,7 @@ const cartReducer = (state, action) => {
 };
 
 // Create cart context
+// const CartContext = createContext();
 export const CartContext = createContext();
 
 // Create cart provider
@@ -103,7 +104,10 @@ export default function CartProvider({ children }) {
     addOne: (productId) => dispatch({ type: actions.ADD_ONE, productId }),
     // Dispatch function to remove one quantity from an item in the cart given a productId
     removeOne: (productId) => dispatch({ type: actions.REMOVE_ONE, productId }),
+    removeItemFromCart: (productId) => dispatch({ type: actions.REMOVE_ITEM, productId }), 
   };
 
   return <CartContext.Provider value={providerValue}>{children}</CartContext.Provider>;
 }
+
+
