@@ -4,14 +4,13 @@ const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
   Query: {
-   
     testimonials: async () => {
       return Testimonial.find({ isApproved: true }).sort({ createdAt: -1 }).populate('user');
     },
-    
+
     adminTestimonials: async (parent, { testimonialText, userId }, context) => {
       if (context.user.isAdmin) {
-        return Testimonial.find({  }).sort({ createdAt: -1 }).populate('user');
+        return Testimonial.find({}).sort({ createdAt: -1 }).populate('user');
       }
       throw new AuthenticationError('You need to be an admin!');
     },
@@ -57,32 +56,47 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    
-   
 
     removeTestimonial: async (parent, { testimonialId }) => {
       return Testimonial.findOneAndDelete({ _id: testimonialId });
     },
 
-    updateTestimonial: async (parent, { testimonialId, isApproved }, context) => {
-      if (context.user.isAdmin) {
-        const updatedTestimonial = await Testimonial.findOneAndUpdate(
-          { _id: testimonialId },
-          { isApproved },
-          { new: true }
-        ).populate('user');
-  
-        return updatedTestimonial;
-      }
-      
-      throw new AuthenticationError('You need to be an admin!');
-    },
-    
-    
-    
-    
-    // updateTestimonial: async (parent, { id }) => {
-    //   return await Testimonial.findOneAndUpdate({ _id: Testimonial }, { new: true });
+    // updateTestimonial: async (parent, { id, testimonialText }, context) => {
+    //   if (context.user) {
+    //     const testimonial = await Testimonial.findById(id);
+
+    //     if (!testimonial || testimonial.userId.toString() !== context.user._id.toString()) {
+    //       throw new Error('You do not have permission to update this testimonial');
+    //     }
+
+    //     // Update and save the testimonial
+    //     testimonial.testimonialText = testimonialText;
+    //     await testimonial.save();
+
+    //     return testimonial;
+    //   } else {
+    //     throw new AuthenticationError('You must be logged in to update a testimonial');
+    //   }
+    // },
+
+    // approveTestimonial: async (parent, { testimonialId, isApproved }, context) => {
+    //   if (context.user.isAdmin) {
+    //     try {
+    //       const testimonial = await Testimonial.findById(testimonialId);
+
+    //       if (!testimonial) {
+    //         throw new Error('No testimonial found with this id');
+    //       }
+
+    //       testimonial.isApproved = isApproved;
+    //       await testimonial.save();
+
+    //       return testimonial;
+    //     } catch (err) {
+    //       console.error(err);
+    //     }
+    //   }
+    //   throw new AuthenticationError('You need to be an admin!');
     // },
 
     addProduct: async (parent, { product }) => {

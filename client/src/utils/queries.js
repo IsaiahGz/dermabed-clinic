@@ -52,3 +52,40 @@ export const QUERY_PRODUCT = gql`
     }
   }
 `;
+
+export const QUERY_ADMIN_TESTIMONIALS = gql`
+  query GetAdminTestimonials {
+    adminTestimonials {
+      _id
+      testimonialText
+      user {
+        _id
+        fullName
+      }
+      isApproved
+      createdAt
+    }
+  }
+`;
+
+export const QUERY_ALL_USERS = gql`
+  query GetAllUsers {
+    allUsers {
+      _id
+      firstName
+      lastName
+      email
+      isAdmin
+    }
+  }
+`;
+
+export const QUERY_MY_TESTIMONIALS = gql`
+  query GetMyTestimonials($userId: ID!) {
+    myTestimonials(userId: $userId) {
+      _id
+      testimonialText
+      createdAt
+    }
+  }
+`;
