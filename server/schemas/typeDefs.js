@@ -29,7 +29,12 @@ const typeDefs = gql`
     imageUrl: String
   }
 
-  input CartItems {
+  type CartItem {
+    product: Product
+    quantity: Int
+  }
+
+  input CartItemsInput {
     productId: ID
     quantity: Int
   }
@@ -41,6 +46,20 @@ const typeDefs = gql`
   type Auth {
     token: ID!
     user: User
+  }
+
+  type PurchaseHistory {
+    _id: ID
+    checkoutSessionId: String
+    email: String
+    productsQuantity: [CartItem]!
+    amountTotal: Float
+    name: String
+  }
+
+  type Query {
+    purchaseHistoryBySession(checkoutSessionId: String!): PurchaseHistory
+    getMyPurchaseHistory: [PurchaseHistory]!
   }
 
   type Query {
@@ -74,7 +93,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    checkout(cartItems: [CartItems]!): Stripe
+    checkout(cartItems: [CartItemsInput]!): Stripe
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     removeUser(userId: ID!): User

@@ -1,4 +1,4 @@
-const { Testimonial, Product, User } = require('../models');
+const { Testimonial, Product, User, PurchaseHistory } = require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
@@ -47,6 +47,17 @@ const resolvers = {
         return Profile.findOne({ _id: context.user._id });
       }
       throw new AuthenticationError('You need to be logged in!');
+    },
+    purchaseHistoryBySession: async (parent, { checkoutSessionId }) => {
+      // Populate product in productsQuantity array
+      return PurchaseHistory.findOne({ checkoutSessionId }).populate('productsQuantity.product');
+    },
+    getMyPurchaseHistory: async (parent, args, context) => {
+      if (!context.user) {
+        throw new AuthenticationError('You need to be logged in!');
+      }
+      const userEmail = context.user.email;
+      return PurchaseHistory.find({ email: userEmail }).populate('productsQuantity.product');
     },
     myTestimonials: async (parent, args, context) => {
       if (!context.user) {
@@ -177,7 +188,12 @@ const resolvers = {
         payment_method_types: ['card'],
         line_items,
         metadata: {
-          productIds: cartItems.map((item) => item.productId).join(','),
+          // Rename productId to product
+          productsQuantity: JSON.stringify(
+            cartItems.map((item) => {
+              return { product: item.productId, quantity: item.quantity };
+            })
+          ),
         },
         mode: 'payment',
         success_url:

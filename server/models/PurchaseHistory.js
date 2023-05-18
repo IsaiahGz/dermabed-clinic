@@ -12,10 +12,13 @@ const purchaseHistorySchema = new Schema({
     type: String,
     trim: true,
   },
-  products: [
+  productsQuantity: [
     {
-      type: Schema.Types.ObjectId,
-      ref: 'Product',
+      product: {
+        type: Schema.Types.ObjectId,
+        ref: 'Product',
+      },
+      quantity: Number,
     },
   ],
   amountTotal: {
