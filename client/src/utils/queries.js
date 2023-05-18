@@ -70,7 +70,7 @@ export const QUERY_ADMIN_TESTIMONIALS = gql`
 
 export const QUERY_ALL_USERS = gql`
   query GetAllUsers {
-    allUsers {
+    users {
       _id
       firstName
       lastName
@@ -81,11 +81,12 @@ export const QUERY_ALL_USERS = gql`
 `;
 
 export const QUERY_MY_TESTIMONIALS = gql`
-  query GetMyTestimonials($userId: ID!) {
-    myTestimonials(userId: $userId) {
+  query GetMyTestimonials {
+    myTestimonials {
       _id
       testimonialText
       createdAt
+      isApproved
     }
   }
 `;
