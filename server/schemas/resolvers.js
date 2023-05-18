@@ -75,47 +75,30 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    removeTestimonial: async (parent, { testimonialId }) => {
-      return Testimonial.findOneAndDelete({ _id: testimonialId });
+    removeTestimonial: async (parent, args, context) => {
+      if (context.user) {
+        return Testimonial.findOneAndDelete({ _id: args.testimonialId });
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
 
-    // updateTestimonial: async (parent, { id, testimonialText }, context) => {
-    //   if (context.user) {
-    //     const testimonial = await Testimonial.findById(id);
+    approveTestimonial: async (parent, args, context) => {
+      if (context.user.isAdmin) {
+        return Testimonial.findOneAndUpdate({ _id: args.testimonialId }, { isApproved: args.isApproved }, { new: true });
+      }
+      throw new AuthenticationError('You need to be an admin!');
+    },
 
-    //     if (!testimonial || testimonial.userId.toString() !== context.user._id.toString()) {
-    //       throw new Error('You do not have permission to update this testimonial');
-    //     }
-
-    //     // Update and save the testimonial
-    //     testimonial.testimonialText = testimonialText;
-    //     await testimonial.save();
-
-    //     return testimonial;
-    //   } else {
-    //     throw new AuthenticationError('You must be logged in to update a testimonial');
-    //   }
-    // },
-
-    // approveTestimonial: async (parent, { testimonialId, isApproved }, context) => {
-    //   if (context.user.isAdmin) {
-    //     try {
-    //       const testimonial = await Testimonial.findById(testimonialId);
-
-    //       if (!testimonial) {
-    //         throw new Error('No testimonial found with this id');
-    //       }
-
-    //       testimonial.isApproved = isApproved;
-    //       await testimonial.save();
-
-    //       return testimonial;
-    //     } catch (err) {
-    //       console.error(err);
-    //     }
-    //   }
-    //   throw new AuthenticationError('You need to be an admin!');
-    // },
+    updateTestimonial: async (parent, args, context) => {
+      if (context.user) {
+        return Testimonial.findOneAndUpdate(
+          { _id: args.testimonialId },
+          { testimonialText: args.testimonialText, isApproved: false },
+          { new: true }
+        );
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
 
     addProduct: async (parent, { product }) => {
       return Product.create({ product });
