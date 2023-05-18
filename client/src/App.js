@@ -17,6 +17,7 @@ import Cancer from './pages/Cancer';
 import Laser from './pages/Laser';
 import ShopItem from './pages/ShopItem';
 import Cart from './pages/Cart';
+import CheckoutSuccess from './pages/CheckoutSuccess';
 import Me from './pages/Me';
 
 import CartProvider from './utils/cartProvider';
@@ -60,6 +61,7 @@ function App() {
                 <Route path='/shop' element={<Shop />} />
                 <Route path='/me' element={<Me />} />
                 <Route path='/shop/:itemId' element={<ShopItem />} />
+                <Route path='/c/success' element={<CheckoutSuccess />} />
                 <Route path='/cart' element={<Cart />} />
                 <Route path='/login' element={<LoginPage />} />
                 <Route path='/admin' element={<Admin />} />

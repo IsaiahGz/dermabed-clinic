@@ -7,6 +7,7 @@ const actions = {
   REMOVE_ITEM: 'REMOVE_ITEM',
   ADD_ONE: 'ADD_ONE',
   REMOVE_ONE: 'REMOVE_ONE',
+  CLEAR_CART: 'CLEAR_CART',
 };
 
 // Create card reducer
@@ -66,6 +67,11 @@ const cartReducer = (state, action) => {
       // If item is not in cart, do nothing
       break;
     }
+    case actions.CLEAR_CART: {
+      // Clear the cart
+      state.cartItems = [];
+      break;
+    }
     default: {
       // Unknown action type, do nothing to the current state
       break;
@@ -104,10 +110,10 @@ export default function CartProvider({ children }) {
     addOne: (productId) => dispatch({ type: actions.ADD_ONE, productId }),
     // Dispatch function to remove one quantity from an item in the cart given a productId
     removeOne: (productId) => dispatch({ type: actions.REMOVE_ONE, productId }),
-    removeItemFromCart: (productId) => dispatch({ type: actions.REMOVE_ITEM, productId }), 
+    removeItemFromCart: (productId) => dispatch({ type: actions.REMOVE_ITEM, productId }),
+    // Dispatch function to clear the cart
+    clearCart: () => dispatch({ type: actions.CLEAR_CART }),
   };
 
   return <CartContext.Provider value={providerValue}>{children}</CartContext.Provider>;
 }
-
-

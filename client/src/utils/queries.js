@@ -89,3 +89,47 @@ export const QUERY_MY_TESTIMONIALS = gql`
     }
   }
 `;
+
+export const QUERY_HISTORY_BY_SESSION = gql`
+  query PurchaseHistoryBySession($checkoutSessionId: String!) {
+    purchaseHistoryBySession(checkoutSessionId: $checkoutSessionId) {
+      _id
+      checkoutSessionId
+      email
+      productsQuantity {
+        product {
+          _id
+          name
+          price
+          description
+          inStock
+        }
+        quantity
+      }
+      amountTotal
+      name
+    }
+  }
+`;
+
+export const QUERY_HISTORY_BY_EMAIL = gql`
+  query GetMyPurchaseHistory {
+    getMyPurchaseHistory {
+      _id
+      checkoutSessionId
+      email
+      productsQuantity {
+        product {
+          _id
+          name
+          price
+          description
+          inStock
+        }
+        quantity
+      }
+      amountTotal
+      name
+    }
+  }
+`;

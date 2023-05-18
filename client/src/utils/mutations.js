@@ -61,7 +61,7 @@ export const ADMIN_UPDATE_USER = gql`
 `;
 
 export const MUTATE_CHECKOUT = gql`
-  mutation checkout($cartItems: [CartItems]!) {
+  mutation checkout($cartItems: [CartItemsInput]!) {
     checkout(cartItems: $cartItems) {
       redirectUrl
     }

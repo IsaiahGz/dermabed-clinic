@@ -15,6 +15,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: authMiddleware,
+  introspection: process.env.NODE_ENV !== 'production',
 });
 
 // Setup route for Stripe webhook
@@ -37,16 +38,10 @@ app.post('/webhook', express.raw({ type: 'application/json' }), async (request, 
     const sessionWithLineItems = await stripe.checkout.sessions.retrieve(paymentIntentSucceeded.id, {
       expand: ['line_items'],
     });
-    const lineItems = sessionWithLineItems.line_items;
-    // console.log('Session with line items:');
-    // console.log(sessionWithLineItems);
-    // console.log('Line items:');
-    // console.log(lineItems);
-    // Create PurchaseHistory document
-    const purchaseHistory = await PurchaseHistory.create({
+    await PurchaseHistory.create({
       checkoutSessionId: sessionWithLineItems.id,
       email: sessionWithLineItems.customer_details.email,
-      products: sessionWithLineItems.metadata.productIds.split(','), // Convert string to array
+      productsQuantity: JSON.parse(sessionWithLineItems.metadata.productsQuantity),
       amountTotal: sessionWithLineItems.amount_total / 100,
       name: sessionWithLineItems.customer_details.name,
     });
@@ -61,11 +56,10 @@ app.use(express.json());
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  });
 }
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async () => {
