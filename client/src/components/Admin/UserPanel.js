@@ -17,10 +17,10 @@ export default function UserPanel() {
     setSearchTerm(event.target.value);
   };
 
-  const handleSetAdmin = async (userId) => {
+  const handleSetAdmin = async (userId, setAdmin) => {
     try {
       const { data } = await setAdminStatus({
-        variables: { userId, isAdmin: true },
+        variables: { userId, isAdmin: setAdmin },
       });
     } catch (err) {
       console.error(err);
@@ -30,7 +30,7 @@ export default function UserPanel() {
   const filteredUsers = users.filter((user) => user.firstName.toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
-    <div className='bg-slate-200 rounded p-2'>
+    <div className='bg-slate-200 rounded p-4'>
       <div className='flex items-center mb-4'>
         <input
           type='text'

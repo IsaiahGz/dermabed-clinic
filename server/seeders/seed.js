@@ -5,6 +5,7 @@ const Testimonial = require('../models/Testimonial');
 const testimonialSeeds = require('./testimonialSeeds.json');
 const productSeeds = require('./productSeeds.json');
 const Product = require('../models/Product');
+const PurchaseHistory = require('../models/PurchaseHistory');
 
 const seedDatabase = async () => {
   try {
@@ -26,6 +27,8 @@ const seedDatabase = async () => {
     await Product.collection.deleteMany({});
     await Product.collection.insertMany(productSeeds);
     console.log('Products seeded!');
+
+    await PurchaseHistory.collection.deleteMany({});
 
     process.exit(0);
   } catch (err) {

@@ -4,69 +4,69 @@
     "price": 29.99,
     "description": "A gentle, foaming cleanser that deeply hydrates and soothes skin while removing excess oils and impurities.",
     "inStock": true,
-    "imageUrl": "/assets/images/facialCleanser.png"
+    "imageUrl": "../assets/images/facialCleanser.png"
   },
   {
     "name": "Retinol Serum",
     "price": 39.99,
     "description": "Our Retinol Serum is formulated with a 2.5% Retinol Complex that provides both immediate and long term release to promote radiant skin.",
     "inStock": true,
-    "imageUrl": "/assets/images/retinolSerum.png"
+    "imageUrl": "../assets/images/retinolSerum.png"
   },
   {
     "name": "Vitamin C Serum",
     "price": 32.99,
     "description": "An antioxidant-rich vitamin C serum that helps to brighten the complexion and reduce the appearance of fine lines and wrinkles.",
     "inStock": false,
-    "imageUrl": "/assets/images/vitaminCSerum.png"
+    "imageUrl": "../assets/images/vitaminCSerum.png"
   },
   {
     "name": "Hydrating Face Moisturizer",
     "price": 24.99,
     "description": "A lightweight, non-greasy moisturizer that provides intense hydration and moisture to your skin.",
     "inStock": true,
-    "imageUrl": "/assets/images/faceMoisturizer.png"
+    "imageUrl": "../assets/images/faceMoisturizer.png"
   },
   {
     "name": "Exfoliating Face Scrub",
     "price": 19.99,
     "description": "A gentle exfoliating scrub that removes dead skin cells to reveal a brighter, smoother, more radiant complexion.",
     "inStock": true,
-    "imageUrl": "/assets/images/faceScrub.png"
+    "imageUrl": "../assets/images/faceScrub.png"
   },
   {
     "name": "Anti-Aging Eye Cream",
     "price": 34.99,
     "description": "A powerful anti-aging eye cream designed to restore youthful vitality to the delicate skin around the eyes.",
     "inStock": true,
-    "imageUrl": "/assets/images/eyeCream.png"
+    "imageUrl": "../assets/images/eyeCream.png"
   },
   {
     "name": "Brightening Face Mask",
     "price": 24.99,
     "description": "A brightening face mask that helps to refresh the skin and improve overall skin radiance.",
-    "inStock": false, 
-    "imageUrl": "/assets/images/faceMask.png"
+    "inStock": false,
+    "imageUrl": "../assets/images/faceMask.png"
   },
   {
     "name": "Purifying Clay Mask",
     "price": 29.99,
     "description": "A purifying clay mask designed to reduce the appearance of pores and detoxify the skin.",
     "inStock": true,
-    "imageUrl": "/assets/images/clayMask.png"
+    "imageUrl": "../assets/images/clayMask.png"
   },
   {
     "name": "Daily Sunscreen SPF 50",
     "price": 19.99,
     "description": "A broad-spectrum sunscreen that provides superior protection from the sun's harmful rays while nourishing the skin.",
     "inStock": true,
-    "imageUrl": "/assets/images/sunscreen.png"
+    "imageUrl": "../assets/images/sunscreen.png"
   },
   {
     "name": "Hydrating Lip Balm",
     "price": 9.99,
     "description": "A hydrating lip balm enriched with natural oils to soothe and condition lips.",
     "inStock": true,
-    "imageUrl": "/assets/images/lipBalm.png"
+    "imageUrl": "../assets/images/lipBalm.png"
   }
 ]

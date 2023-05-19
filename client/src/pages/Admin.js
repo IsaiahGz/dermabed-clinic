@@ -1,12 +1,11 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import TestimonialPanel from '../components/Admin/TestimonialPanel';
 import UserPanel from '../components/Admin/UserPanel';
+import Auth from '../utils/auth';
 
 export default function Admin() {
-  const [isAdmin,] = useState(true);
-
-  if (!isAdmin) {
+  if (!Auth.loggedIn() || !Auth.getProfile().data.isAdmin) {
     return <Navigate to='/' />;
   }
 
