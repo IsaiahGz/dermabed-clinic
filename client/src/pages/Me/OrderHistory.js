@@ -14,7 +14,6 @@ export default function OrderHistory() {
   if (error) {
     return <p>Error! {error.message}</p>;
   }
-  console.log(data);
   return (
     <div className='container mx-auto px-4 mt-5'>
       <h1 className='text-4xl font-semibold mb-4'>Order History</h1>

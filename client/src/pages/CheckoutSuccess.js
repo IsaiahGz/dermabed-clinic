@@ -17,7 +17,6 @@ export default function CheckoutSuccess() {
   });
   if (loading) return <div>Loading...</div>;
   if (!data.purchaseHistoryBySession) return <div>No data</div>;
-  console.log(data);
   return (
     <div className='container mx-auto mt-10'>
       <div className=''>
