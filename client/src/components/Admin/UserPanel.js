@@ -26,7 +26,7 @@ export default function UserPanel() {
       console.error(err);
     }
   };
-  const users = data?.allUsers || [];
+  const users = data?.users || [];
   const filteredUsers = users.filter((user) => user.firstName.toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
