@@ -93,7 +93,7 @@ const resolvers = {
       if (context?.user) {
         // Get the testimonial and make sure it belongs to the user or the user is an admin
         const testimonial = await Testimonial.findOne({ _id: args.testimonialId }).populate('user');
-        if (testimonial.user._id === context.user._id || context.user.isAdmin) {
+        if (testimonial.user._id.toString() === context.user._id.toString() || context.user.isAdmin) {
           return Testimonial.findOneAndUpdate(
             { _id: args.testimonialId },
             { testimonialText: args.testimonialText, isApproved: false },
