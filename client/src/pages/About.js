@@ -2,12 +2,16 @@ import React from 'react';
 import drRichImage from '../assets/images/drRich.png';
 import drAbedImage from '../assets/images/drAbed.png';
 import drSashaImage from '../assets/images/drSasha.png';
+// import altdoc1 from '../assets/images/altdoc1.png';
+// import altdoc2 from '../assets/images/altdoc2.png';
+// import altdoc3 from '../assets/images/altdoc3.png';
 
+   
 
 const About = () => {
   return (
-    <div className='container mx-auto px-4'>
-      <h1 className='text-4xl font-semibold mb-4'>About Our Dermatology Office</h1>
+    <div className='container mx-auto px-4 mt-2 text-gray-900'>
+      <h1 className='text-4xl font-semibold mb-4 text-blue-500'>About Our Dermatology Office</h1>
       <p className='text-lg mb-4'>
         At our Dermatology Office, our mission is to provide comprehensive and advanced skincare to patients of all ages. With a team of
         dedicated, experienced, and caring professionals, we strive to provide the highest quality dermatological care in a compassionate
@@ -28,7 +32,7 @@ const About = () => {
         decisions about their care. We are proud of the lasting relationships we have developed with our patients over the years and look
         forward to welcoming you to our practice.
       </p>
-      <h1 className='text-4xl font-semibold mb-4'>Meet our staff</h1>
+      <h1 className='text-4xl font-semibold mb-4 text-blue-500'>Meet our staff</h1>
      
        <div className= "flex"> <img className="" src={drRichImage} alt="rich"></img> <p>Dr. Rich-Dr. Rich Widtmann isn't just a board-certified dermatologist; he's a skin health maestro orchestrating a symphony of science, empathy, and personalized care for each patient. With his profound understanding of dermatology, he paints a picture of health on the canvas of your skin, turning each concern into a masterpiece of wellness. When you step into Dr. Widtmann's clinic, you're not just getting treated, you're embarking on a journey towards radiant skin health, conducted by one of the most dedicated virtuosos in the field. </p>
        </div>

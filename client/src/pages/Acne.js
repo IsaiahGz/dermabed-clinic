@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const AcneTreatment = () => {
   return (
-    <div className='p-4'>
+    <div className='p-4 text-gray-900'>
       <h1 className='text-4xl font-bold mb-4'>Acne Treatment</h1>
       <p className='text-lg mb-2'>
         Welcome to our Acne Treatment page. We understand how acne can significantly affect one's self-esteem and overall quality of life.
@@ -100,13 +100,13 @@ const AcneTreatment = () => {
         </Link>
       </div>
       <h2 className='text-3xl font-semibold mb-2'>Patient Testimonial</h2>
-      <div className='bg-gray-100 rounded-lg p-4 mb-2'>
+      <div className='bg-gray-200 rounded-lg p-4 mb-2'>
         <p className='text-lg italic mb-2'>
           "I've struggled with acne for years and have tried countless products and treatments with little success. But since starting
           treatment at this clinic, my skin has improved significantly. The staff are supportive and knowledgeable, and they've created a
           treatment plan that really works for me. I'm so grateful for their help!"
         </p>
-        <p className='text-lg font-bold'>- Patient Name</p>
+        <p className='text-lg font-bold text-purple-800'>Rick James</p>
       </div>
     </div>
   );

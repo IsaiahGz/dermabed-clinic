@@ -1,45 +1,45 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faCaretDown } from '@fortawesome/free-solid-svg-icons';
-import Auth from '../../utils/auth';
-import ShoppingBag from '../ShoppingBag';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import Auth from "../../utils/auth";
+import ShoppingBag from "../ShoppingBag";
 
 const links = [
   {
-    name: 'Testimonials',
-    path: '/testimonials',
+    name: "Testimonials",
+    path: "/testimonials",
   },
   {
-    name: 'About',
-    path: '/about',
+    name: "About",
+    path: "/about",
   },
   {
-    name: 'Contact',
-    path: '/contact',
+    name: "Contact",
+    path: "/contact",
   },
   {
-    name: 'Shop',
-    path: '/shop',
+    name: "Shop",
+    path: "/shop",
   },
 ];
 
 const serviceLinks = [
   {
-    name: 'Acne',
-    path: '/services/acne',
+    name: "Acne",
+    path: "/services/acne",
   },
   {
-    name: 'Botox',
-    path: '/services/botox',
+    name: "Botox",
+    path: "/services/botox",
   },
   {
-    name: 'Cancer',
-    path: '/services/cancer',
+    name: "Cancer",
+    path: "/services/cancer",
   },
   {
-    name: 'Laser Hair Removal',
-    path: '/services/laser',
+    name: "Laser Hair Removal",
+    path: "/services/laser",
   },
 ];
 
@@ -48,7 +48,7 @@ const Header = () => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
 
   const handleMobileNav = () => {
-    document.getElementById('mobileNavbar').classList.toggle('translate-x-80');
+    document.getElementById("mobileNavbar").classList.toggle("translate-x-80");
     // Add hidden after a delay to allow the transition to complete
     if (isNavOpen) {
       setTimeout(() => {
@@ -67,39 +67,50 @@ const Header = () => {
     setIsServicesOpen(false);
   };
 
+  const isLoggedInAndAdmin = () => {
+    if (Auth.loggedIn()) {
+      if (Auth.getProfile()?.data?.isAdmin) return true;
+    }
+    return false;
+  };
+
   return (
-    <header className='w-full bg-slate-400 p-2'>
-      <div className='inline-block'>
-        <Link className='text-2xl' to='/'>
-          <h1>Abeds Derm</h1>
+    <header className="w-full bg-blue-500 p-2">
+      <div className="inline-block">
+        <Link className="text-2xl text-bold text-black tracking-wide" to="/">
+          <h1>DermAbed Clinic</h1>
         </Link>
       </div>
-      <nav className='hidden lg:block float-right'>
-        <ul className='flex flex-row'>
+      <nav className="hidden lg:block float-right">
+        <ul className="flex flex-row">
           {links.map((link) => {
             return (
-              <li className='mr-4 p-1' key={link.name}>
-                <Link onClick={handleMobileNav} className='text-xl' to={link.path}>
+              <li className="mr-4 p-1 text-white text-bold" key={link.name}>
+                <Link
+                  onClick={handleMobileNav}
+                  className="text-xl"
+                  to={link.path}
+                >
                   {link.name}
                 </Link>
               </li>
             );
           })}
-          <li className='mr-4 p-1 relative'>
-            <button className='text-xl' onClick={toggleServices}>
+          <li className="mr-4 p-1 relative">
+            <button className="text-xl text-white" onClick={toggleServices}>
               Services
-              <FontAwesomeIcon className='ml-2' icon={faCaretDown} />
+              <FontAwesomeIcon className="ml-2" icon={faCaretDown} />
             </button>
             {isServicesOpen && (
-              <div className='absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5'>
-                <div className='py-1'>
+              <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                <div className="py-1">
                   {serviceLinks.map((link) => {
                     return (
                       <Link
                         key={link.name}
                         to={link.path}
-                        className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
-                        role='menuitem'
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        role="menuitem"
                       >
                         {link.name}
                       </Link>
@@ -109,60 +120,84 @@ const Header = () => {
               </div>
             )}
           </li>
+          {isLoggedInAndAdmin() && (
+            <li className="mr-4 p-1 text-white text-bold">
+              <Link to="/admin" className="text-xl">
+                Admin
+              </Link>
+            </li>
+          )}
           <ShoppingBag />
           {Auth.loggedIn() ? (
             <>
-              <li className='ml-3'>
-                <Link className='text-xl p-1 rounded bg-blue-300 hover:bg-blue-400' to='/me'>
+              <li className="ml-3 mt-1">
+                <Link
+                  className="text-xl p-1 rounded bg-blue-300 hover:bg-blue-400"
+                  to="/me"
+                >
                   {Auth.getProfile().data.firstName}
                 </Link>
               </li>
-              <li className='ml-3'>
-                <button className='text-xl p-1 rounded bg-red-300 hover:bg-red-400' onClick={Auth.logout}>
+              <li className="ml-3">
+                <button
+                  className="text-xl p-1 rounded bg-red-300 hover:bg-red-400"
+                  onClick={Auth.logout}
+                >
                   Logout
                 </button>
               </li>
             </>
           ) : (
-            <li className='ml-3 p-1'>
-              <Link className='text-xl bg-sky-200 hover:bg-sky-300 p-1 rounded' to='/login'>
+            <li className="ml-3 p-1">
+              <Link
+                className="text-xl bg-sky-200 hover:bg-sky-300 p-1 rounded"
+                to="/login"
+              >
                 Login
               </Link>
             </li>
           )}
         </ul>
       </nav>
-      <div className='lg:hidden float-right'>
+      <div className="lg:hidden float-right">
         <ShoppingBag />
-        <button className='ml-3 text-xl' onClick={handleMobileNav}>
+        <button className="ml-3 text-xl" onClick={handleMobileNav}>
           <FontAwesomeIcon icon={faBars} />
         </button>
       </div>
       <nav
-        id='mobileNavbar'
-        className='bg-slate-300 lg:hidden float-right fixed top-12 right-0 translate-x-80 transition w-48 h-screen z-10'
+        id="mobileNavbar"
+        className="bg-blue-300 lg:hidden float-right fixed top-12 right-0 translate-x-80 transition w-48 h-screen z-10"
       >
-        <ul className={isNavOpen ? 'block' : 'hidden'}>
+        <ul className={isNavOpen ? "block" : "hidden"}>
           {links.map((link) => {
             return (
-              <li className='p-3' key={link.name}>
-                <Link onClick={handleMobileNav} className='text-xl' to={link.path}>
+              <li className="p-3" key={link.name}>
+                <Link
+                  onClick={handleMobileNav}
+                  className="text-xl"
+                  to={link.path}
+                >
                   {link.name}
                 </Link>
               </li>
             );
           })}
-          <li className='p-3'>
-            <button onClick={toggleServices} className='text-xl'>
+          <li className="p-3">
+            <button onClick={toggleServices} className="text-xl">
               Services
-              <FontAwesomeIcon className='ml-2' icon={faCaretDown} />
+              <FontAwesomeIcon className="ml-2" icon={faCaretDown} />
             </button>
             {isServicesOpen && (
               <ul>
                 {serviceLinks.map((link) => {
                   return (
                     <li key={link.name}>
-                      <Link onClick={(handleMobileNav, closeServices)} className='text-xl' to={link.path}>
+                      <Link
+                        onClick={(handleMobileNav, closeServices)}
+                        className="text-xl"
+                        to={link.path}
+                      >
                         {link.name}
                       </Link>
                     </li>
@@ -171,22 +206,38 @@ const Header = () => {
               </ul>
             )}
           </li>
+          {isLoggedInAndAdmin() && (
+            <li className="p-3">
+              <Link to="/admin" className="text-xl">
+                Admin
+              </Link>
+            </li>
+          )}
           {Auth.loggedIn() ? (
             <>
-              <li className='p-3'>
-                <Link className='text-xl p-1 rounded bg-blue-300 hover:bg-blue-400' to='/me'>
+              <li className="p-3">
+                <Link
+                  className="text-xl p-1 rounded bg-blue-400 hover:bg-blue-500"
+                  to="/me"
+                >
                   {Auth.getProfile().data.firstName}
                 </Link>
               </li>
-              <li className='p-3'>
-                <button className='text-xl p-1 rounded bg-red-300 hover:bg-red-400' onClick={Auth.logout}>
+              <li className="p-3">
+                <button
+                  className="text-xl p-1 rounded bg-red-300 hover:bg-red-400"
+                  onClick={Auth.logout}
+                >
                   Logout
                 </button>
               </li>
             </>
           ) : (
-            <li className='p-3'>
-              <Link className='text-xl bg-sky-200 hover:bg-sky-300 p-1 rounded' to='/login'>
+            <li className="p-3">
+              <Link
+                className="text-xl bg-sky-200 hover:bg-sky-300 p-1 rounded"
+                to="/login"
+              >
                 Login
               </Link>
             </li>
