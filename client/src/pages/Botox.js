@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const BotoxTreatment = () => {
   return (
-    <div className='p-4'>
+    <div className='p-4 bg text-gray-900'>
       <h1 className='text-4xl font-bold mb-4'>Botox Treatment</h1>
       <p className='text-lg mb-2'>
         Welcome to our Botox Treatment page. Botox is a popular non-surgical, injectable treatment that helps to smooth lines and wrinkles
@@ -80,12 +80,12 @@ const BotoxTreatment = () => {
         </Link>
       </div>
       <h2 className='text-3xl font-semibold mb-2'>Patient Testimonial</h2>
-      <div className='bg-gray-100 rounded-lg p-4 mb-2'>
+      <div className='bg-gray-200 rounded-lg p-4 mb-2'>
         <p className='text-lg italic mb-2'>
           "I had a wonderful experience with Botox treatment at this clinic. The staff made me feel comfortable and the results have been
           amazing. My face feels refreshed and years younger!"
         </p>
-        <p className='text-lg font-bold'>- Patient Name</p>
+        <p className='text-lg font-bold text-purple-800'>Kim Kardashian</p>
       </div>
     </div>
   );

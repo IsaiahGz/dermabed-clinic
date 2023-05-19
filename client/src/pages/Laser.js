@@ -79,12 +79,12 @@ const LaserHairRemoval = () => {
         </Link>
       </div>
       <h2 className='text-3xl font-semibold mb-2'>Patient Testimonial</h2>
-      <div className='bg-gray-100 rounded-lg p-4 mb-2'>
+      <div className='bg-gray-200 rounded-lg p-4 mb-2'>
         <p className='text-lg italic mb-2'>
           "I had a wonderful experience with the laser hair removal service at this clinic. The procedure was quick and nearly painless, and
           the staff was incredibly professional and attentive. I'm thrilled with the results!"
         </p>
-        <p className='text-lg font-bold'>- Patient Name</p>
+        <p className='text-lg font-bold text-purple-800'>Sarah Miller</p>
       </div>
     </div>
   );

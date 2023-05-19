@@ -27,8 +27,8 @@ const Testimonials = () => {
   };
 
   return (
-    <div className='container mx-auto px-4'>
-      <h1 className='text-4xl font-semibold mb-4'>Testimonials</h1>
+    <div className='container mx-auto px-4 bg-blue-100 mt-5'>
+      <h1 className='text-4xl font-bold mb-4 text-gray-800'>Testimonials</h1>
       {Auth.loggedIn() &&
         (!isSubmitted ? (
           <form onSubmit={handleAddTestimonial} className='add-testimonial-form mb-6'>
@@ -40,19 +40,19 @@ const Testimonials = () => {
             />
             <button
               type='submit'
-              className='px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline'
+              className='px-4 py-2 font-bold text-white bg-teal-500 rounded hover:bg-teal-700 focus:outline-none focus:shadow-outline'
             >
               Add Testimonial
             </button>
           </form>
         ) : (
-          <p className='text-lg text-green-700'>Your testimonial has been submitted for review.</p>
+          <p className='text-lg text-green-700 text-bold'>Your testimonial has been submitted for review.</p>
         ))}
 
       {testimonials.map((testimonial, index) => (
         <div key={index} className='bg-white shadow rounded-lg p-6 mb-4'>
-          <h2 className='text-2xl font-semibold mb-2'>{testimonial?.user?.fullName}</h2>
-          <p className='text-lg mb-2'>"{testimonial.testimonialText}"</p>
+          <h2 className='text-2xl font-bold mb-2 text-gray-800'>{testimonial?.user?.fullName}</h2>
+          <p className='text-lg text-bold mb-2 text-gray-700'>"{testimonial.testimonialText}"</p>
         </div>
       ))}
     </div>

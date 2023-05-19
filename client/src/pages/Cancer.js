@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const CancerTreatment = () => {
   return (
-    <div className='p-4'>
+    <div className='p-4 text-gray-900'>
       <h1 className='text-4xl font-bold mb-4'>Skin Cancer Treatment</h1>
       <p className='text-lg mb-2'>
         Welcome to our Skin Cancer Treatment page. We are dedicated to providing comprehensive care for patients with all types of skin
@@ -78,12 +78,12 @@ const CancerTreatment = () => {
         </Link>
       </div>
       <h2 className='text-3xl font-semibold mb-2'>Patient Testimonial</h2>
-      <div className='bg-gray-100 rounded-lg p-4 mb-2'>
+      <div className='bg-gray-200 rounded-lg p-4 mb-2'>
         <p className='text-lg italic mb-2'>
           "I cannot speak highly enough of the care I received at this clinic during my skin cancer treatment. The staff was incredibly
           supportive and took the time to answer all my questions. They made a difficult time much easier."
         </p>
-        <p className='text-lg font-bold'>- Patient Name</p>
+        <p className='text-lg font-bold text-purple-600'>Jackie Chan</p>
       </div>
     </div>
   );
