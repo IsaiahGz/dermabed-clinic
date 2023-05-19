@@ -69,33 +69,37 @@ const resolvers = {
 
   Mutation: {
     addTestimonial: async (parent, { testimonialText }, context) => {
-      if (context.user) {
+      if (context?.user) {
         return Testimonial.create({ testimonialText, user: context.user._id });
       }
       throw new AuthenticationError('You need to be logged in!');
     },
 
     removeTestimonial: async (parent, args, context) => {
-      if (context.user) {
+      if (context?.user) {
         return Testimonial.findOneAndDelete({ _id: args.testimonialId });
       }
       throw new AuthenticationError('You need to be logged in!');
     },
 
     approveTestimonial: async (parent, args, context) => {
-      if (context.user.isAdmin) {
+      if (context?.user?.isAdmin) {
         return Testimonial.findOneAndUpdate({ _id: args.testimonialId }, { isApproved: args.isApproved }, { new: true });
       }
       throw new AuthenticationError('You need to be an admin!');
     },
 
     updateTestimonial: async (parent, args, context) => {
-      if (context.user) {
-        return Testimonial.findOneAndUpdate(
-          { _id: args.testimonialId },
-          { testimonialText: args.testimonialText, isApproved: false },
-          { new: true }
-        );
+      if (context?.user) {
+        // Get the testimonial and make sure it belongs to the user or the user is an admin
+        const testimonial = await Testimonial.findOne({ _id: args.testimonialId }).populate('user');
+        if (testimonial.user._id === context.user._id || context.user.isAdmin) {
+          return Testimonial.findOneAndUpdate(
+            { _id: args.testimonialId },
+            { testimonialText: args.testimonialText, isApproved: false },
+            { new: true }
+          );
+        }
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -123,12 +127,18 @@ const resolvers = {
       return { token, user };
     },
 
-    removeUser: async (parent, { userId }) => {
-      return User.findOneAndDelete({ _id: userId });
+    removeUser: async (parent, { userId }, context) => {
+      if (context?.user?.isAdmin) {
+        return User.findOneAndDelete({ _id: userId });
+      }
+      throw new AuthenticationError('You need to be an admin!');
     },
 
-    updateUser: async (parent, { User }) => {
-      return await User.findOneAndUpdate({ _id: User }, { new: true });
+    adminUpdateUser: async (parent, { userId, isAdmin }, context) => {
+      if (context?.user?.isAdmin) {
+        return User.findOneAndUpdate({ _id: userId }, { isAdmin }, { new: true });
+      }
+      throw new AuthenticationError('You need to be an admin!');
     },
 
     login: async (parent, { email, password }) => {

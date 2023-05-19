@@ -97,6 +97,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     removeUser(userId: ID!): User
     updateUser(userId: ID!): User
+    adminUpdateUser(userId: ID!, isAdmin: Boolean!): User
   }
 
   type Query {

@@ -20,7 +20,7 @@ const server = new ApolloServer({
 
 // Setup route for Stripe webhook
 app.post('/webhook', express.raw({ type: 'application/json' }), async (request, response) => {
-  const endpointSecret = process.env.NODE_ENV === 'production' ? '' : process.env.STRIPE_LOCAL_WEBHOOK;
+  const endpointSecret = process.env.NODE_ENV === 'production' ? process.env.STRIPE_DEV_WEBHOOK : process.env.STRIPE_LOCAL_WEBHOOK;
 
   const sig = request.headers['stripe-signature'];
 

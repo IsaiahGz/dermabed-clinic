@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { QUERY_MY_TESTIMONIALS } from '../utils/queries';
+import { QUERY_MY_TESTIMONIALS } from '../../utils/queries';
 import { useMutation } from '@apollo/client';
-import { UPDATE_TESTIMONIAL } from '../utils/mutations';
-import { REMOVE_TESTIMONIAL } from '../utils/mutations';
+import { UPDATE_TESTIMONIAL, REMOVE_TESTIMONIAL } from '../../utils/mutations';
 
-const Me = () => {
+const UserTestimonials = () => {
   const { loading, data, error } = useQuery(QUERY_MY_TESTIMONIALS, {
     fetchPolicy: 'network-only',
   });
@@ -53,9 +52,8 @@ const Me = () => {
   if (error) {
     return <p>Error! {error.message}</p>;
   }
-
   return (
-    <div className='container mx-auto px-4'>
+    <div className='container mx-auto px-4 mt-5'>
       <h1 className='text-4xl font-semibold mb-4'>My Testimonials</h1>
       {data.myTestimonials.map((testimonial, index) => (
         <div key={index} className='bg-white shadow rounded-lg p-6 mb-4'>
@@ -74,8 +72,9 @@ const Me = () => {
           <p className='text-gray-500'>Posted on {new Date(parseInt(testimonial.createdAt)).toLocaleDateString()}</p>
         </div>
       ))}
+      {data.myTestimonials.length === 0 && <p className='text-lg'>You haven't posted any testimonials yet!</p>}
     </div>
   );
 };
 
-export default Me;
+export default UserTestimonials;

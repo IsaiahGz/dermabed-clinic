@@ -42,7 +42,7 @@ export const UPDATE_TESTIMONIAL = gql`
   }
 `;
 
-export const ADMIN_UPDATE_TESTIMONIAL = gql`
+export const ADMIN_APPROVE_TESTIMONIAL = gql`
   mutation approveTestimonial($testimonialId: ID!, $isApproved: Boolean!) {
     approveTestimonial(testimonialId: $testimonialId, isApproved: $isApproved) {
       _id
