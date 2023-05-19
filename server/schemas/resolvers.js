@@ -170,7 +170,7 @@ const resolvers = {
                 name: product.name,
                 description: product.description,
               },
-              unit_amount: product.price * 100,
+              unit_amount: Math.round(product.price * 100),
             },
             quantity: cartItems[i].quantity,
           });
