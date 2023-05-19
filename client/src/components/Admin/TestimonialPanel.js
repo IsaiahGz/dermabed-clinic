@@ -5,7 +5,8 @@ import { QUERY_ADMIN_TESTIMONIALS } from '../../utils/queries';
 
 export default function TestimonialPanel() {
   const [filterDisapproved, setFilterDisapproved] = useState(true);
-  const { data } = useQuery(QUERY_ADMIN_TESTIMONIALS);
+  const { data,loading } = useQuery(QUERY_ADMIN_TESTIMONIALS);
+  if (loading) return <div>Loading...</div>;
   const testimonials = data.adminTestimonials;
 
   return (

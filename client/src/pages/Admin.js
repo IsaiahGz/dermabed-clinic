@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import TestimonialPanel from '../components/Admin/TestimonialPanel';
 import UserPanel from '../components/Admin/UserPanel';
 
 export default function Admin() {
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin,] = useState(true);
 
   if (!isAdmin) {
     return <Navigate to='/' />;

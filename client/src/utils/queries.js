@@ -36,6 +36,7 @@ export const QUERY_PRODUCTS = gql`
       price
       description
       inStock
+      imageUrl
     }
   }
 `;
